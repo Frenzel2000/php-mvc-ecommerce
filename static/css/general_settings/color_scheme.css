@@ -1,0 +1,56 @@
+:root {
+  --color-primary: #418ce3;
+  --color-secondary: #081f35;
+  --color-accent: #081f35;
+  --color-bg-light: #f9fafb;
+  --color-bg-dark: #111827;
+  --color-text: #111827;
+  --color-text-secondary: #6b7280;
+  --color-success: #22c55e;
+  --color-danger: #ef4444;
+  font-family: Arial, sans-serif;
+  --header-height: 100px;
+  --footer-height: 100px;
+  --page-padding: 24px;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  padding-top: var(--header-height, 100px);
+  min-height: 100vh;
+}
+main {
+  padding-top: var(--header-height, 200px);
+  padding-bottom: 80px;
+}
+
+html,
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+  font-family: "Franklin Gothic Medium", "Franklin Gothic",
+    "Franklin Gothic Demi", sans-serif;
+  font-weight: bold;
+}
+
+.page-main {
+  flex: 1 0 auto;
+  padding-bottom: 80px; /* Abstand zum Footer */
+}

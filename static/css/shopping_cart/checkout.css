@@ -1,0 +1,226 @@
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
+
+.shopping_cart {
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 230px;
+  margin-bottom: 50px;
+  width: 100%;
+  max-width: 800px;
+  min-height: 600px;
+  height: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background-color: transparent;
+  padding: 40px;
+}
+
+h4 {
+  margin: 20px 0 10px 0;
+  color: #333;
+  width: 100%;
+  font-size: 1.2rem;
+  border-bottom: 1px solid rgb(122, 122, 122);
+  padding-bottom: 10px;
+}
+
+.shipping_info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 700px;
+}
+
+.name_wrapper,
+.address_wrapper,
+.postal_wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.shopping_cart input {
+  height: 45px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: transparent;
+}
+
+.shopping_cart input:focus {
+  border-color: #418ce3;
+  box-shadow: 0 0 0 3px rgba(65, 140, 227, 0.1);
+}
+
+.shopping_cart input::placeholder {
+  color: #aaa;
+}
+.cart_summary {
+  width: 100%;
+  max-width: 700px;
+  margin-top: 30px;
+  background-color: transparent;
+  border-radius: 8px;
+  padding: 20px;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+}
+
+.cart_item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.cart_item:last-child {
+  border-bottom: none;
+}
+
+.payment_info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 700px;
+  margin-top: 20px;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.payment-option:hover {
+  border-color: #418ce3;
+}
+
+.payment-option input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 15px;
+  box-shadow: none;
+  accent-color: #418ce3;
+}
+
+.final_price {
+  margin-top: 30px;
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 2px solid #333;
+}
+
+.final_price .left_side p {
+  color: grey;
+  font-size: 0.85rem;
+  margin: 5px 0 0 0;
+}
+
+.price_display {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.payment_button {
+  text-decoration: none;
+  color: white;
+  margin-top: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 300px;
+  height: 60px;
+  border-radius: 50px;
+  border: none;
+  background-color: hsl(120, 63%, 44%);
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.payment_button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: green;
+}
+
+.alert {
+  width: 100%;
+  max-width: 700px;
+  padding: 15px;
+  background-color: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+@media (max-width: 725px) {
+  .shopping_cart {
+    margin-top: 300px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 620px) {
+  .shopping_cart {
+    height: fit-content;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+  }
+  .name_wrapper,
+  .address_wrapper,
+  .postal_wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  input {
+    width: 100%;
+  }
+}

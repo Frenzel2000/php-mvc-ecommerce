@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Installationshinweise & Zugangsdaten</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        margin: 0;
+        background: #f4f7f6;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      main {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      section {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+      }
+
+      h1 {
+        margin-top: 0;
+        color: #2c3e50;
+      }
+
+      code {
+        background: #f2f2f2;
+        padding: 2px 6px;
+        border-radius: 5px;
+      }
+
+      .hint {
+        background: #e8f4f8;
+        color: #2980b9;
+        padding: 10px;
+        border-radius: 4px;
+        font-size: 0.95rem;
+        border-left: 4px solid #3498db;
+      }
+
+      ul {
+        margin-top: 8px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <section>
+        <h1>Installationshinweise & Zugangsdaten</h1>
+
+        <ol>
+          <li>
+            Den Ordner <code>ws2526_dwp_frenzel_kocyatagi_brandmaier</code> nach
+            <code>XAMPP/htdocs</code>
+            kopieren.
+          </li>
+          <li>
+            Datenbank einrichten:
+            <ul>
+              <li>Datenbankname: <code>sport_shop</code></li>
+              <li>
+                Datenbank erstellen: <code>CREATE DATABASE sport_shop</code>
+              </li>
+              <li>SQL importieren: <code>database/sport_shop.sql</code></li>
+            </ul>
+          </li>
+          <li>
+            Im Browser aufrufen:
+            <ul>
+              <li>
+                <code
+                  >http://localhost/ws2526_dwp_frenzel_kocyatagi_brandmaier/</code
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            Zugangsdaten:
+            <ul>
+              <li>
+                <strong>User:</strong> <code>user@email.de</code> /
+                <code>user</code>
+              </li>
+              <li>
+                <strong>Usermanager:</strong>
+                <code>user.manager@email.de</code> / <code>admin</code>
+              </li>
+              <li>
+                <strong>ProductManager:</strong>
+                <code>product.manager@email.de</code> / <code>admin</code>
+              </li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="hint">
+          <strong>Hinweis:</strong> Das Projekt benötigt Apache URL-Rewrite
+          (<code>.htaccess</code> / <code>mod_rewrite</code>).
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

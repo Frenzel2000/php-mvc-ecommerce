@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projektdokumentation</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --sidebar-width: 280px;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+        }
+
+        /* Sidebar Navigation */
+        nav {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background-color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+            overflow-y: auto;
+        }
+
+        nav h1 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav li {
+            margin-bottom: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #7f8c8d;
+            font-size: 0.95rem;
+            display: block;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        /* Main Content */
+        main {
+            margin-left: var(--sidebar-width);
+            padding: 40px 60px;
+            max-width: 900px;
+            /* Lesbarkeit */
+            width: 100%;
+        }
+
+        section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+            scroll-margin-top: 20px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #555;
+            margin-top: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .hint {
+            background-color: #e8f4f8;
+            color: #2980b9;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin: 10px 0;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        /* Template für Feature-Boxen */
+        .feature-box {
+            border: 1px solid #eee;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .wireframes {
+        display: grid;
+        grid-template-columns: max-content 1fr; 
+
+        grid-auto-flow: dense; 
+
+        align-items: center;    
+        gap: 20px 40px;         
+        padding: 20px;
+        }
+
+        .wireframes h4 {
+        grid-column: 2;
+        margin: 0;              
+        text-align: left;       
+        font-size: 1rem;      
+        }
+
+        .wireframes img {
+        grid-column: 1;
+        display: block;
+        }
+
+
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f9f9f9;
+            width: 30%;
+        }
+
+        section img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 12px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <h1>Projekt Dokumentation</h1>
+        <ul>
+            <li><a href="#intro">1. Einleitung & Ziele</a></li>
+            <li><a href="#research">2. Recherche & Design</a></li>
+            <li><a href="#data-roles">3. Daten & Rollen</a></li>
+            <li><a href="#architecture">4. Technische Architektur</a></li>
+            <li><a href="#flow">5. Ablauflogik</a></li>
+            <li><a href="#features">6. Funktionsbeschreibung</a></li>
+            <li><a href="#pm-ai">7. Projektmanagement & KI</a></li>
+            <li><a href="#conclusion">8. Fazit & Reflexion</a></li>
+            <li style="
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+          ">
+                <small style="color: #999">Separate Datei:</small><br />
+                <a href="installationshinweise.html">Installationshinweise</a>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="intro">
+            <h2>1. Kunde & Ziele</h2>
+            <h3>1.1 Kunde / Hintergrund</h3>
+            <p>Unser Projekt ist ein Webshop für Sport-Supplements. Die Kunden an die sich dieser Shop richtet, sind primär junge, sportlich engagierte
+                Menschen. Das Design und die Website-Navigation sind dementsprechend angepasst.  
+            </p>
+
+            <h3>1.2 Zielsetzung</h3>
+            <p>Die Anwendung soll die Produkte und den Kauf-Vorgang in den Vordergrund stellen und eine einfache Handhabung (UX) bieten.
+                Der Kunde soll klare visuelle Feedbacks erhalten und immer genau wissen, wie er die Seite navigieren kann. 
+                Dies soll durch visuell ansprechende, klickbare Elemente geschehen. Damit die User Experience nicht eingeschränkt wird, 
+                sollen  unnötige reloads der Seiten durch AJAX Methoden verhindert werden. Durch Kommunikation mit der Datenbank soll außerdem 
+                sichergestellt werden, dass die Bestellung des Users immer im Einklang mit dem Lagerbestand ist. Für die Administratoren des 
+                Shops soll ein Admin-Panel für ein einfaches Management über ein User Interface sorgen. Die Administration soll über drei Rollen 
+                User-Manager, Product-Manager und Admin erfolgen, die alle unterschiedliche Rechte haben. Der User selbst soll auch seine persönlichen Daten 
+                über einen persönlichen Bereich via UI einfach ändern und sein Profil selbst löschen können.   
+            </p>
+        </section>
+
+        <section id="research">
+            <h2>2. Recherche & Design</h2>
+            <h3>2.1 Recherche</h3>
+            <p>Beim Design haben wir uns am allgemeinen Layout moderner 
+                Web-Shops orientiert. Das Layout der Homepage und Produktseiten 
+                wurde inspiriert von anderen Supplement-Shops wie 
+                <a href="https://www.esn.com/">esn.com</a>
+             
+            </p>
+            <img src="docu_images/esn.png" alt="" />
+            <img src="docu_images/esn_produktseite.png" alt="" />
+            <div class="hint">
+                Inspiration hauptsächlich von
+            </div>
+            <h3>2.2 Sitemap</h3>
+            <img src="docu_images/UML_Sitemap.png" alt="" />
+
+
+            <h3>2.3 Wireframes</h3>
+            <div class="wireframes">
+                <h4> Homepage</h4>
+                <img src="docu_images/wireframe_mainpage.png" alt="" />
+                <h4> Kategorie-Seite</h4>
+                <img src="docu_images/wireframe_categoriepage.png" alt="" />
+                <h4> Suchergebnis-Seite</h4>
+                <img src="docu_images/wireframe_searchresult.png" alt="" />
+                <h4> Produkt-Seite</h4>
+                <img src="docu_images/wireframe_productpage.png" alt="" />
+                <h4> Login-Seite</h4>
+                <img src="docu_images/wireframe_login.png" alt="" />
+                <h4> Warenkorb-Seite</h4>
+                <img src="docu_images/wireframe_cart.png" alt="" />
+                <h4> Checkout-Seite</h4>
+                <img src="docu_images/wireframe_checkout.png" alt="" />
+                <h4> Admin-Seite</h4>
+                <img src="docu_images/wireframe_admindashboard.png" alt="" />
+                <h4> Profil-Seite</h4>
+                <img src="docu_images/wireframe_profile.png" alt="" />
+            </div>
+       
+
+        </section>
+
+        <section id="data-roles">
+            <h2>3. Daten- & Rollenmodell</h2>
+            <h3>3.1 Rollenmodell (RBAC – Role-Based Access Control)</h3>
+
+            <h4>Datenbank-Struktur (RBAC-Tabellen)</h4>
+            <ul>
+                <li><code>Roles(role_id, role_name)</code></li>
+                <li>
+                    <code>Permissions(permission_id, permission_key,
+              permission_description)</code>
+                </li>
+                <li>
+                    <code>User_Roles(user_id, role_id)</code> → Zuordnung User ↔ Rolle
+                    (n:m)
+                </li>
+                <li>
+                    <code>Role_Permissions(role_id, permission_id)</code> → Zuordnung
+                    Rolle ↔ Permission (n:m)
+                </li>
+            </ul>
+
+            <p>
+                <strong>Effektive Rechte eines Users</strong> ergeben sich aus der
+                Join-Kette:
+            </p>
+            <p>
+                <code>Users → User_Roles → Roles → Role_Permissions → Permissions</code>
+            </p>
+            <img src="docu_images/UML_rbac.png" alt="" />
+
+            <h4>Rollen</h4>
+
+            <div class="feature-box">
+                <p><strong>Rolle: user</strong></p>
+                <ul>
+                    <li><code>product.read</code> (Produkte ansehen)</li>
+                    <li><code>order.read</code> (Bestellungen ansehen)</li>
+                    <li><code>cart.manage</code> (Warenkorb verwalten)</li>
+                    <li><code>rating.create</code> (Bewertungen erstellen)</li>
+                </ul>
+            </div>
+
+            <div class="feature-box">
+                <p><strong>Rolle: product_manager</strong></p>
+                <ul>
+                    <li><code>product.read</code></li>
+                    <li><code>product.create</code> (Produkte anlegen)</li>
+                    <li><code>product.update</code> (Produkte bearbeiten)</li>
+                    <li><code>product.delete</code> (Produkte löschen)</li>
+                    <li><code>category.manage</code> (Kategorien verwalten)</li>
+                </ul>
+            </div>
+
+            <div class="feature-box">
+                <p><strong>Rolle: user_manager</strong></p>
+                <ul>
+                    <li><code>user.read</code> (Benutzer ansehen)</li>
+                    <li><code>user.create</code> (Benutzer anlegen)</li>
+                    <li><code>user.update</code> (Benutzer bearbeiten)</li>
+                    <li><code>user.delete</code> (Benutzer löschen)</li>
+                    <li><code>order.read</code></li>
+                    <li><code>order.update_state</code> (Bestellstatus ändern)</li>
+                    <li><code>role.assign</code> (Rollen zuweisen)</li>
+                </ul>
+            </div>
+
+            <div class="feature-box">
+                <p><strong>Rolle: admin</strong></p>
+                <ul>
+                    <li>
+                        alle Permissions inkl. <code>system.admin</code> (Alle Rechte)
+                    </li>
+                </ul>
+            </div>
+
+            <h4>Technische Umsetzung im Projekt</h4>
+            <ol>
+                <li>
+                    <strong>Laden der Berechtigungen beim Login</strong><br />
+                    Beim Login werden die Permissions über einen SQL-Join geladen
+                    (<code>UserModel::getPermissionsByUserId</code>) und als Array in
+                    der Session gespeichert:
+                    <ul>
+                        <li>
+                            <code>$_SESSION['user']</code> enthält Basisdaten (id, name,
+                            email)
+                        </li>
+                        <li>
+                            <code>$_SESSION['permissions']</code> enthält alle
+                            Permission-Keys (Strings)
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <strong>Zentrale Permission-Prüfung</strong><br />
+                    Es gibt eine Hilfsfunktion:
+                    <ul>
+                        <li>
+                            <code>hasPermission('permission.key')</code> → prüft, ob der Key
+                            in <code>$_SESSION['permissions']</code> enthalten ist.
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <strong>Zugriffsschutz auf Controller-Ebene</strong><br />
+                    <ul>
+                        <li>
+                            <code>requireLogin()</code> blockiert nicht eingeloggte Nutzer
+                            (bei AJAX/POST mit JSON-Fehler + 401, sonst Redirect).
+                        </li>
+                        <li>
+                            <code>denyAccessUnlessGranted('permission.key')</code> gibt bei
+                            fehlender Berechtigung 403 zurück (bei AJAX als JSON, sonst
+                            Textausgabe).
+                        </li>
+                    </ul>
+                    <div class="hint">
+                        Beispiel: Im <strong>AdminController</strong> verlangt z. B.
+                        <code>/admin/users</code> die Permission <code>user.read</code>.
+                    </div>
+                </li>
+
+                <li>
+                    <strong>UI/Navigation abhängig von Permissions</strong><br />
+                    Im Header wird z. B. der Link zur Adminpage nur angezeigt, wenn der
+                    User eine passende Permission hat (<code>category.manage</code> oder
+                    <code>role.assign</code> oder <code>system.admin</code>).
+                    Admin-Funktionen sind dadurch auffindbar, aber serverseitig trotzdem
+                    abgesichert.
+                </li>
+
+                <li>
+                    <strong>Rollenvergabe</strong><br />
+                    <ul>
+                        <li>Standardrolle ist <code>user</code>.</li>
+                        <li>
+                            Rollen können im Admin-Bereich nur vergeben werden, wenn der
+                            eingeloggte Nutzer <code>role.assign</code> (oder
+                            <code>system.admin</code>) besitzt.
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h4>Rollenmatrix (Rolle × Permission)</h4>
+            <table>
+                <tr>
+                    <th>Permission</th>
+                    <th>user</th>
+                    <th>product_manager</th>
+                    <th>user_manager</th>
+                    <th>admin</th>
+                </tr>
+                <tr>
+                    <td><code>product.read</code></td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td></td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td><code>product.create</code></td>
+                    <td></td>
+                    <td>✅</td>
+                    <td></td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td><code>product.update</code></td>
+                    <td></td>
+                    <td>✅</td>
+                    <td></td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td><code>product.delete</code></td>
+                    <td></td>
+                    <td>✅</td>
+                    <td></td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td><code>category.manage</code></td>
+                    <td></td>
+                    <td>✅</td>
+                    <td></td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td><code>cart.manage</code></td>
+                    <td>✅</td>
+                    <td></td>
+                    <td></td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td><code>order.read</code></td>
+                    <td>✅</td>
+                    <td></td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td><code>order.update_state</code></td>
+                    <td></td>
+                    <td></td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td><code>rating.create</code></td>
+                    <td>✅</td>
+                    <td></td>
+                    <td></td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td><code>user.read</code></td>
+                    <td></td>
+                    <td></td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td><code>user.create</code></td>
+                    <td></td>
+                    <td></td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td><code>user.update</code></td>
+                    <td></td>
+                    <td></td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td><code>user.delete</code></td>
+                    <td></td>
+                    <td></td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td><code>role.assign</code></td>
+                    <td></td>
+                    <td></td>
+                    <td>✅</td>
+                    <td>✅</td>
+                </tr>
+                <tr>
+                    <td><code>system.admin</code></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>✅</td>
+                </tr>
+            </table>
+
+            <p>
+                <strong>Hinweis:</strong> <code>admin</code> besitzt alle Rechte
+                (inkl. <code>system.admin</code>). Standardnutzer erhalten die Rolle
+                <code>user</code>.
+            </p>
+
+            <h3>3.2 Relationales Modell</h3>
+
+            <p>
+                <strong>Beschreibung des relationalen Modells:</strong><br />
+                Das Schema trennt die Daten in die Bereiche <strong>Katalog</strong>,
+                <strong>Benutzer/Adressen</strong>, <strong>Warenkorb</strong>,
+                <strong>Bestellungen</strong>, <strong>Bewertungen</strong> und
+                <strong>Rollen/Rechte (RBAC)</strong>. Produkte sind einer Kategorie
+                zugeordnet (<strong>Categories 1:n Products</strong>). Der Warenkorb
+                ist als <strong>n:m</strong>-Beziehung zwischen
+                <strong>Users</strong> und <strong>Products</strong> über die Tabelle
+                <strong>Cart</strong> modelliert, wobei
+                <code>product_amount</code> die Menge speichert. Bestellungen bestehen
+                aus einem Bestellkopf (<strong>Orders</strong>) und Positionen
+                (<strong>OrderItems</strong>, PK aus <code>order_id</code> +
+                <code>product_id</code>), wodurch sich eine
+                <strong>1:n</strong>-Beziehung von Orders zu OrderItems ergibt; ein
+                Produkt kann entsprechend in vielen Bestellpositionen vorkommen.
+                <code>Orders.user_id</code> ist optional, um
+                <strong>Gastbestellungen</strong> ohne Account zu ermöglichen.
+                Lieferadressen werden pro Bestellung in
+                <strong>Order_Addresses</strong> als
+                <strong>Snapshot</strong> gespeichert, damit historische Bestellungen
+                auch bei späteren Profiländerungen korrekt bleiben. Bewertungen werden
+                über <strong>Ratings</strong> als Beziehung zwischen Users und
+                Products gespeichert. Das Rollen- und Rechtesystem ist relational über
+                Zwischentabellen umgesetzt:
+                <strong>Users n:m Roles</strong> (<strong>User_Roles</strong>) und
+                <strong>Roles n:m Permissions</strong>
+                (<strong>Role_Permissions</strong>). Zusätzlich sind wichtige
+                Eindeutigkeiten (z. B.
+                <code>Users.email</code>, <code>password_resets.token</code>) im
+                Schema als <strong>UNIQUE</strong>-Constraints hinterlegt.
+            </p>
+
+            <img src="docu_images/UML_Doku.png" alt="" />
+
+            <div class="hint">
+                <strong>Legende:</strong> Primärschlüssel sind mit
+                <strong>PK</strong>, Fremdschlüssel mit
+                <strong>FK</strong>
+                gekennzeichnet; <strong>n:m</strong>-Beziehungen werden über
+                Zwischentabellen mit zusammengesetztem Primärschlüssel umgesetzt.
+            </div>
+        </section>
+
+        <section id="architecture">
+            <h2>4. Technische Architektur</h2>
+
+            <h3>4.1 MVC Architektur</h3>
+            <img src="docu_images/UML_architecture.png" />
+            <div class="hint">Diagramm: MVC Komponenten und Abhängigkeiten.</div>
+
+            <h3>4.2 Request Flow</h3>
+            <img src="docu_images/UML_userRequest.png" />
+            <div class="hint">
+                Diagramm: exemplarischer Request-Fluss für die Navigation eines
+                angemeldeten Users zu seinem Profil.
+            </div>
+            <img src="docu_images/UML_adminRequest.png" />
+            <div class="hint">
+                Diagramm: exemplarischer Request-Fluss für die Navigation des
+                angemeldeten Admins zu seinem Admin Bereich (hier erfolgt Prüfung
+                durch RBAC).
+            </div>
+
+            <h3>4.3 Ordnerstruktur</h3>
+            <img src="docu_images/UML_fileStructure.png" />
+            <p>
+                Die Anwendung folgt einer strikten Trennung nach dem <strong>MVC-Prinzip
+                    (Model-View-Controller)</strong>.
+                Alle logischen Kernkomponenten sind im Verzeichnis <code>src/</code> gekapselt, während öffentliche
+                Ressourcen sauber getrennt unter <code>static/</code> und <code>assets/</code> liegen.
+            </p>
+
+            <ul>
+                <li>
+                    <strong>src/controllers/</strong>: Beinhaltet die Steuerungslogik. Die Controller verarbeiten
+                    Benutzereingaben, prüfen Berechtigungen und koordinieren das Zusammenspiel zwischen Model und View.
+                    <em>Beispiele: Controller.php (Basisklasse), HomeController.php, UserController.php.</em>
+                </li>
+                <li>
+                    <strong>src/models/</strong>: Verantwortlich für die Geschäftslogik und die Kommunikation mit der
+                    Datenbank (<code>sport_shop.sql</code>).
+                    <em>Beispiele: Model.php (Basisklasse), UserModel.php, ProductModel.php.</em>
+                </li>
+                <li>
+                    <strong>src/views/</strong>: Enthält die Templates und die Logik für die HTML-Ausgabe.
+                    <em>Beispiele: MainView.php, CartView.php, HomeView.php.</em>
+                    <ul>
+                        <li><strong>src/views/layouts/</strong>: Enthält globale, wiederverwendbare Elemente wie
+                            <code>head.php</code>.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>assets/</strong>: Zentraler Ort für Medienressourcen wie Produktbilder und Videos.
+                </li>
+                <li>
+                    <strong>config/</strong>: Beinhaltet die zentrale Konfiguration der Anwendung (z. B.
+                    Datenbankzugangsdaten).
+                </li>
+                <li>
+                    <strong>static/</strong>: Speichert öffentlich zugängliche Ressourcen wie CSS-Stylesheets und
+                    JavaScript-Dateien.
+                </li>
+                <li>
+                    <strong>Root-Verzeichnis/</strong>:
+                    <ul>
+                        <li><code>index.php</code>: Der zentrale Einstiegspunkt (Front-Controller) der Anwendung.</li>
+                        <li><code>routing.php</code>: Definiert die Navigationspfade und ordnet URLs über Regular
+                            Expressions den
+                            entsprechenden Controllern zu.</li>
+                        <li><code>.htaccess</code>: Apache-Konfiguration zur Ermöglichung von "Pretty URLs" (Rewriting).
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>4.4 Exemplarische Routen & Use-Cases</h3>
+            <p>Anhand der folgenden zwei Beispiele wird verdeutlicht, wie das System Anfragen verarbeitet und wie
+                Frontend und
+                Backend via AJAX kommunizieren.</p>
+
+            <div class="use-case">
+                <h4>Use-Case 1: Produktdetailseite aufrufen (Synchroner Request)</h4>
+                <p>Dieser Pfad zeigt die Auflösung einer "Pretty URL" und das Laden von Daten aus der Datenbank.</p>
+                <div class="route-display">
+                    <code>URL: http://localhost/.../product/show/12</code>
+                </div>
+
+                <ul>
+                    <li><strong>Routing:</strong> Die <code>routing.php</code> nutzt <code>preg_match</code>, um den
+                        Pfad zu
+                        zerlegen (Controller: <em>Product</em>, Action: <em>show</em>, Parameter: <em>12</em>).</li>
+                    <li><strong>Controller (ProductController.php):</strong> Die Methode <code>show()</code> wird
+                        aufgerufen. Sie
+                        validiert die ID und delegiert die Datenbeschaffung an das Model.</li>
+                    <li><strong>Model (ProductModel.php):</strong> Führt ein <code>SELECT</code> mit Prepared Statements
+                        auf der
+                        Tabelle <code>Products</code> aus.</li>
+                    <li><strong>View (ProductView.php):</strong> Die Methode <code>detail($data)</code> rendert das
+                        HTML. Hier
+                        wird bereits die JavaScript-Logik (<code>cart.js</code>) für spätere Interaktionen eingebunden.
+                    </li>
+                </ul>
+            </div>
+
+            <hr>
+
+            <div class="feature-box">
+                <h3>Use-Case 2: Produkt in den Warenkorb legen (AJAX-Interaktion)</h3>
+                <div class="hint">Dieses Feature demonstriert die asynchrone Kommunikation und die serverseitige
+                    Validierung.
+                </div>
+
+                <table>
+                    <tr>
+                        <th>Nutzer-Aktion / Rolle</th>
+                        <td>Kunde fügt Artikel zum Warenkorb hinzu. Rollenprüfung via
+                            <code>denyAccessUnlessGranted('cart.manage')</code>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Route & Action</th>
+                        <td><code>POST /cart/add</code> (verarbeitet in <code>CartController::add</code>)</td>
+                    </tr>
+                    <tr>
+                        <th>DB-Tabellen / CRUD</th>
+                        <td>Tabelle: <code>Products</code> (Read für Stock-Check). Speicherung erfolgt vorerst in
+                            <code>$_SESSION['cart']</code> (Persistent-Sync beim Logout).
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Validierung (Server)</th>
+                        <td>
+                            1. <code>requireLogin()</code>: Ist der User angemeldet?<br>
+                            2. <code>checkStockLimit()</code>: Ist die gewünschte Menge verfügbar?
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Frontend Event</th>
+                        <td><code>click</code>-Event auf den Button <code>.add-to-cart-btn</code> (in
+                            <code>cart.js</code>).
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>AJAX & Daten</th>
+                        <td>
+                            <strong>Input (JSON):</strong> <code>{ "product_id": 12, "product_amount": 1 }</code><br>
+                            <strong>Output (JSON):</strong>
+                            <code>{ "success": true, "cartTotal": 45.99, "cartAmount": 3 }</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Fehlerfall / Feedback</th>
+                        <td>
+                            Bei Bestandunterschreitung: <code>success: false</code>. JavaScript zeigt Fehlermeldung
+                            (Alert/DOM-Inject).<br>
+                            Bei Erfolg: Dynamisches Update des Warenkorb-Counters ohne Seiten-Reload.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section id="flow">
+            <h2>5. Ablauflogik</h2>
+            <h3>5.1 Übersicht der Flussbilder (Dateneingabe)</h3>
+
+            <p>
+                Die folgenden Flowcharts dokumentieren alle relevanten Dateneingabe-
+                und Änderungsprozesse im Projekt (Formular/AJAX → Validierung →
+                DB-Operation → Feedback/Redirect bzw. JSON-Response).
+            </p>
+
+            <h4>Enthaltene Flussbilder (Routen/Endpoints)</h4>
+            <ul>
+                <li><code>user/register</code></li>
+                <li><code>user/login</code></li>
+                <li><code>user/forgotPassword</code></li>
+                <li><code>user/resetPassword</code></li>
+                <li><code>user/updateUser</code></li>
+                <li><code>user/deleteAccount</code></li>
+                <li><code>cart/add</code> (AJAX)</li>
+                <li><code>cart/remove</code> (AJAX)</li>
+                <li>
+                    <code>order/checkout</code> + <code>order/placeOrder</code> →
+                    (<code>success</code>/<code>error</code>)
+                </li>
+                <li><code>rating/store</code></li>
+                <li><code>admin/userCreate</code></li>
+                <li><code>admin/userUpdate</code></li>
+                <li><code>admin/userDelete</code></li>
+                <li><code>admin/productCreate</code></li>
+                <li><code>admin/productUpdate</code></li>
+                <li><code>admin/productDelete</code></li>
+                <li><code>product/processSearch</code> (AJAX Autocomplete)</li>
+                <li><code>*/ajaxFilter</code> (Filter + Load More, AJAX)</li>
+            </ul>
+
+            <div class="hint">
+                <strong>Achtung: rating/remove</strong><br />
+                <ul>
+                    <li>Existiert im Controller</li>
+                    <li>Wird im UI nicht verwendet („never used“)</li>
+                    <li>Kein Permission-Key vorhanden (<code>rating.delete</code>)</li>
+                </ul>
+                Das Löschen von Bewertungen ist im Controller vorbereitet
+                (<code>rating/remove</code>), wird im UI jedoch nicht angeboten und
+                ist mangels Permission <code>rating.delete</code> aktuell nicht
+                ausführbar.
+            </div>
+
+            <h4>Nummerierte Übersicht (Kapitelreihenfolge der Diagramme)</h4>
+            <ol>
+                <li>Registrierung (<code>user/register</code>)</li>
+                <li>Login + Warenkorb-Merge (<code>user/login</code>)</li>
+                <li>Passwort vergessen (<code>user/forgotPassword</code>)</li>
+                <li>Passwort zurücksetzen (<code>user/resetPassword</code>)</li>
+                <li>Profil bearbeiten (<code>user/updateUser</code>)</li>
+                <li>Account löschen (<code>user/deleteAccount</code>)</li>
+                <li>Warenkorb: Produkt hinzufügen (AJAX – <code>cart/add</code>)</li>
+                <li>
+                    Warenkorb: Produkt entfernen (AJAX – <code>cart/remove</code>)
+                </li>
+                <li>
+                    Order: Checkout + placeOrder + success/error
+                    (<code>order/checkout</code>, <code>order/placeOrder</code>)
+                </li>
+                <li>Bewertung erstellen (<code>rating/store</code>)</li>
+                <li>Admin: User anlegen (<code>admin/userCreate</code>)</li>
+                <li>Admin: User bearbeiten (<code>admin/userUpdate</code>)</li>
+                <li>Admin: User löschen (<code>admin/userDelete</code>)</li>
+                <li>Admin: Produkt anlegen (<code>admin/productCreate</code>)</li>
+                <li>Admin: Produkt bearbeiten (<code>admin/productUpdate</code>)</li>
+                <li>Admin: Produkt löschen (<code>admin/productDelete</code>)</li>
+                <li>
+                    Suche (AJAX Autocomplete) (<code>product/processSearch</code>)
+                </li>
+                <li>Filter + Load More (AJAX) (<code>*/ajaxFilter</code>)</li>
+            </ol>
+
+            <h3>Flow 1: Registrierung</h3>
+            <img src="docu_images/user_registieren.png" alt="Flow 1: Registrierung" />
+
+            <h3>Flow 2: Login – Warenkorb-Merge</h3>
+            <img src="docu_images/user_login.png" alt="Flow 2: Login – Warenkorb-Merge" />
+
+            <h3>Flow 3: Passwort vergessen</h3>
+            <img src="docu_images/user_forgotPassword.png" alt="Flow 3: Passwort vergessen" />
+
+            <h3>Flow 4: Passwort zurücksetzen</h3>
+            <img src="docu_images/user_passwordReset.png" alt="Flow 4: Passwort zurücksetzen" />
+
+            <h3>Flow 5: Profil bearbeiten</h3>
+            <img src="docu_images/user_updateUser.png" alt="Flow 5: Profil bearbeiten" />
+
+            <h3>Flow 6: Account löschen</h3>
+            <img src="docu_images/user_deleteUser.png" alt="Flow 6: Account löschen" />
+
+            <h3>Flow 7: Warenkorb – Produkt hinzufügen (AJAX)</h3>
+            <img src="docu_images/cart_add.png" alt="Flow 7: Warenkorb – Produkt hinzufügen (AJAX)" />
+
+            <h3>Flow 8: Warenkorb – Produkt entfernen (AJAX)</h3>
+            <img src="docu_images/cart_remove.png" alt="Flow 8: Warenkorb – Produkt entfernen (AJAX)" />
+
+            <h3>Flow 9: Order – Checkout + placeOrder + success/error</h3>
+            <img src="docu_images/order_placeOrder.png" alt="Flow 9: Order – Checkout + placeOrder + success/error" />
+
+            <h3>Flow 10: Bewertung erstellen</h3>
+            <img src="docu_images/rating_store.png" alt="Flow 10: Bewertung erstellen" />
+
+            <h3>Flow 11: Admin – User anlegen</h3>
+            <img src="docu_images/admin_userUpdate.png" alt="Flow 11: Admin – User anlegen" />
+
+            <h3>Flow 12: Admin – User bearbeiten</h3>
+            <img src="docu_images/admin_userUpdate2.png" alt="Flow 12: Admin – User bearbeiten" />
+
+            <h3>Flow 13: Admin – User löschen</h3>
+            <img src="docu_images/admin_userDelete.png" alt="Flow 13: Admin – User löschen" />
+
+            <h3>Flow 14: Admin – Produkt anlegen</h3>
+            <img src="docu_images/admin_productCreate.png" alt="Flow 14: Admin – Produkt anlegen" />
+
+            <h3>Flow 15: Admin – Produkt bearbeiten</h3>
+            <img src="docu_images/admin_productUpdate.png" alt="Flow 15: Admin – Produkt bearbeiten" />
+
+            <h3>Flow 16: Admin – Produkt löschen</h3>
+            <img src="docu_images/admin_productDelete.png" alt="Flow 16: Admin – Produkt löschen" />
+
+            <h3>Flow 17: Suche – AJAX Autocomplete</h3>
+            <img src="docu_images/processSearch.png" alt="Flow 17: Suche – AJAX Autocomplete" />
+            <img src="docu_images/showSearch.png" alt="" />
+
+            <h3>Flow 18: Filter + Load More (AJAX)</h3>
+            <img src="docu_images/ajaxFilter.png" alt="Flow 18: Filter + Load More (AJAX)" />
+        </section>
+
+        <section id="features">
+            <h2>6. Funktionen & Frontend-Interaktionen</h2>
+            <div class="hint">Dieser Abschnitt vereint "Funktionen je Seite" und "Frontend-Interaktionen".</div>
+
+            <div class="feature-box">
+                <h3>Feature: Globale Live-Suche (Header)</h3>
+
+                <img src="docu_images/LiveSuche.png" alt="Screenshot Live-Suche mit Annotationen">
+
+
+                <table>
+                    <tr>
+                        <th>Use Case / Rolle</th>
+                        <td>Nutzer sucht artikelübergreifend nach Produkten. Die Live-Vorschau ermöglicht schnelles
+                            Finden ohne
+                            Seiten-Reload. <br> <strong>Rolle:</strong> Alle Besucher (Gäste & Kunden).</td>
+                    </tr>
+                    <tr>
+                        <th>Route & Action</th>
+                        <td><code>/product/processSearch</code> (ProductController::processSearch)</td>
+                    </tr>
+                    <tr>
+                        <th>DB-Tabellen / CRUD</th>
+                        <td>Tabelle: <code>Products</code> (Operation: <strong>READ</strong>) <br>
+                            <em>Query: SELECT product_id, asset_path, product_name, price FROM Products WHERE
+                                product_name LIKE :term
+                                LIMIT 6</em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Validierung (Server)</th>
+                        <td>
+                            - <code>trim()</code> des Suchbegriffs.<br>
+                            - Verwendung von Prepared Statements (<code>LIKE :placeholder</code>) gegen
+                            SQL-Injection.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Frontend Event</th>
+                        <td><code>input</code>-Event auf <code>#live-search-input</code> mit einem <strong>300ms
+                                Debounce-Timer</strong> zur Server-Entlastung.</td>
+                    </tr>
+                    <tr>
+                        <th>AJAX & Daten</th>
+                        <td>
+                            <strong>Input (GET):</strong> <code>?term=Prot</code> (Header:
+                            <code>X-Requested-With: XMLHttpRequest</code>)<br>
+                            <strong>Output (JSON):</strong> <br>
+                            <code>{ "productsFound": true, "data": [...] }</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Fehlerfall / Feedback</th>
+                        <td>
+                            <strong>Keine Treffer:</strong> Server sendet <code>data: []</code>. Das Frontend
+                            rendert
+                            die Nachricht
+                            "Keine Produkte gefunden" direkt in das Dropdown.<br>
+                            <strong>Netzwerkfehler:</strong> Abgefangen durch <code>try-catch</code> im JS;
+                            Fehlermeldung in der
+                            Konsole.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="feature-box">
+                <h3>Feature: Produktverwaltung (Anlegen)</h3>
+                <img src="docu_images/ProduktVerwalten.png" alt="Screenshot Produkt löschen">
+
+                <img src="docu_images/ProduktAnlegen.png" alt="Screenshot Produkt löschen">
+
+
+
+                <table>
+                    <tr>
+                        <th>Use Case / Rolle</th>
+                        <td>Administrator legt ein neues Produkt im Sortiment an. <br> <strong>Rolle:</strong>
+                            Administrator (Recht:
+                            <code>product.create</code>).
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Route & Action</th>
+                        <td><code>POST /product/store</code> (ProductController::store)</td>
+                    </tr>
+                    <tr>
+                        <th>DB-Tabellen / CRUD</th>
+                        <td>Tabelle: <code>Products</code> (Operation: <strong>CREATE / INSERT</strong>) <br>
+                            Ausführung in <code>ProductModel::create($data)</code>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Validierung (Server)</th>
+                        <td>
+                            - <strong>RBAC:</strong> <code>denyAccessUnlessGranted('product.create')</code>.<br>
+                            - <strong>Datentypen:</strong> PDO-Binding stellt korrekte Typen für <code>price</code>
+                            (Decimal) und IDs
+                            sicher.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Frontend Event</th>
+                        <td>Standard HTML Form-Submit (Button <code>type="submit"</code>).</td>
+                    </tr>
+                    <tr>
+                        <th>AJAX & Daten</th>
+                        <td>Kein AJAX (Synchroner POST-Request). <br>
+                            <strong>Input:</strong> Form-Daten (product_name, price, category_id, etc.).
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Fehlerfall / Feedback</th>
+                        <td>
+                            - <strong>Berechtigung fehlt:</strong> HTTP 403 (JSON-Error bei POST).<br>
+                            - <strong>DB-Fehler:</strong> <code>try/catch</code> fängt PDOExceptions ab (z.B.
+                            FK-Verletzung bei
+                            <code>category_id</code>) und gibt Fehlermeldung aus.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="feature-box">
+                <h3>Feature: Produktverwaltung (Bearbeiten)</h3>
+                <img src="docu_images/ProduktBearbeiten.png" alt="Screenshot Produkt löschen">
+
+                <table>
+                    <tr>
+                        <th>Use Case / Rolle</th>
+                        <td>Bestehende Produktdaten (Preis, Bestand, Beschreibung) werden aktualisiert. <br>
+                            <strong>Rolle:</strong>
+                            Admin (Recht: <code>product.update</code>).
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Route & Action</th>
+                        <td><code>GET /admin/productEditForm/{id}</code> (Anzeige) <br>
+                            <code>POST /admin/productUpdate</code>
+                            (Verarbeitung)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>DB-Tabellen / CRUD</th>
+                        <td>Tabelle: <code>Products</code> (Operation: <strong>UPDATE</strong>) <br>
+                            Methode: <code>ProductModel::update(int $id, array $data)</code>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Validierung (Server)</th>
+                        <td>
+                            - Prüfung auf Pflichtfelder (Name, Preis, Category, Inventory).<br>
+                            - Optionale Felder werden via <code>bindOptional()</code> als STR oder NULL gebunden.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Fehlerfall / Feedback</th>
+                        <td>
+                            - <strong>404 Not Found:</strong> Falls die Produkt-ID nicht existiert.<br>
+                            - <strong>Redirect:</strong> Bei leeren Pflichtfeldern erfolgt ein Redirect auf die
+                            Liste
+                            ohne Update.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="feature-box">
+                <h3>Feature: Produktverwaltung (Löschen)</h3>
+
+
+
+                <table>
+                    <tr>
+                        <th>Use Case / Rolle</th>
+                        <td>Ein Produkt wird dauerhaft aus dem Sortiment entfernt. <br> <strong>Rolle:</strong>
+                            Admin
+                            (Recht:
+                            <code>product.delete</code>).
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Route & Action</th>
+                        <td><code>POST /admin/productDelete</code> (AdminController::productDelete)</td>
+                    </tr>
+                    <tr>
+                        <th>DB-Tabellen / CRUD</th>
+                        <td>Tabelle: <code>Products</code> (Operation: <strong>DELETE</strong>) <br>
+                            Methode: <code>ProductModel::remove($id)</code>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Validierung (Server)</th>
+                        <td>
+                            - Nur <strong>POST-Requests</strong> zulässig (Schutz vor versehentlichem Löschen via
+                            Link).<br>
+                            - <code>id > 0</code> Prüfung.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Fehlerfall / Feedback</th>
+                        <td>
+                            - <strong>Erfolg:</strong> Setzen eines Flash-Messages ("Produkt wurde gelöscht") und
+                            Redirect zur
+                            Übersicht.<br>
+                            - <strong>Sicherheit:</strong> Nicht-Admins erhalten HTTP 403.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="feature-box">
+                <h3>Feature: Produkt zum Warenkorb hinzufügen (AJAX)</h3>
+
+                <img src="docu_images/InDenWarenkorb.png" alt="Screenshot Warenkorb Interaktion"
+                    style="max-width:100%; border:1px solid #ccc;">
+                <img src="docu_images/Hinzugefügt.png" alt="Screenshot Warenkorb Interaktion"
+                    style="max-width:100%; border:1px solid #ccc;">
+
+
+                <table>
+                    <tr>
+                        <th>Use Case / Rolle</th>
+                        <td>Ein eingeloggter Nutzer fügt eine bestimmte Menge eines Produkts dem Warenkorb hinzu.
+                            <br>
+                            <strong>Rolle:</strong> Eingeloggter User mit Recht <code>cart.manage</code>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Route & Action</th>
+                        <td><code>POST /cart/add</code> (CartController::add)</td>
+                    </tr>
+                    <tr>
+                        <th>DB-Tabellen / CRUD</th>
+                        <td>Tabelle: <code>Products</code> (Read für Bestand-Check). <br>
+                            Speicherung: <strong>Lokal in der Session</strong> (<code>$_SESSION['cart']</code>).
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Validierung (Server)</th>
+                        <td>
+                            - <code>requireLogin()</code> & <code>denyAccessUnlessGranted('cart.manage')</code>.<br>
+                            - <code>checkStockLimit()</code>: Prüft die Zielmenge gegen den verfügbaren Lagerbestand
+                            (<code>inventory</code>).
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Frontend Event</th>
+                        <td><code>click</code>-Event auf den "In den Warenkorb"-Button (verarbeitet in
+                            <code>cart.js</code>).
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>AJAX & Daten</th>
+                        <td>
+                            <strong>Input (JSON/POST):</strong>
+                            <code>{ "product_id": 12, "product_amount": 2 }</code><br>
+                            <strong>Output (JSON):</strong>
+                            <code>{ "success": true, "cartAmount": 5, "cartTotal": 120.50, ... }</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Fehlerfall / Feedback</th>
+                        <td>
+                            - <strong>Bestand unterschritten:</strong> <code>StockExceededException</code> wird
+                            gefangen
+                            ->
+                            JSON-Antwort mit <code>success: false</code> und Lager-Info.<br>
+                            - <strong>Nicht POST:</strong> Fehlermeldung via JSON.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="feature-box">
+                <h3>Feature: Bestellung abschließen (Checkout)</h3>
+
+                <img src="docu_images/Warenkorb.png" alt="Screenshot Checkout Prozess"
+                    style="max-width:100%; border:1px solid #ccc;">
+
+
+                <table>
+                    <tr>
+                        <th>Use Case / Rolle</th>
+                        <td>Der Nutzer schließt seinen Einkauf ab und wandelt den Session-Warenkorb in eine
+                            persistente
+                            Bestellung
+                            um. <br>
+                            <strong>Rolle:</strong> Jeder (inkl. Gast-Checkout). Eingeloggte User werden via ID
+                            verknüpft.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Route & Action</th>
+                        <td><code>POST /order/placeOrder</code> (OrderController::placeOrder)
+
+
+                            <strong><br></br>Erfolg:</strong> <code>GET /order/success/{id}</code>
+                            (OrderController::success) <br>
+                            <strong>Fehler:</strong> <code>GET /order/error</code> (OrderController::error)
+
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <th>DB-Tabellen / CRUD</th>
+                        <td>Tabellen: <code>Orders</code>, <code>Order_Items</code>, <code>Addresses</code>
+                            (Operation:
+                            <strong>CREATE / INSERT</strong>).
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Validierung (Server)</th>
+                        <td>
+                            - Prüfung auf leeren Warenkorb.<br>
+                            - Validierung der Adressdaten (Straße, Hausnummer, PLZ).<br>
+                            - Erneuter <code>StockExceeded</code> Check beim finalen Speichern.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Frontend Event</th>
+                        <td>Standard Form-Submit des Checkout-Formulars.</td>
+                    </tr>
+                    <tr>
+                        <th>AJAX & Daten</th>
+                        <td>Kein AJAX (Synchroner POST-Request mit Redirects).</td>
+                    </tr>
+                    <tr>
+                        <th>Fehlerfall / Feedback</th>
+                        <td>
+                            - <strong>Bestandsproblem:</strong> Redirect auf <code>/order/error?reason=stock</code>
+                            (Fehler werden in
+                            <code>$_SESSION['stock_errors']</code> zwischengespeichert).<br>
+                            - <strong>Erfolg:</strong> Warenkorb-Session wird geleert; Redirect auf
+                            <code>/order/success/{id}</code>.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="feature-box">
+                <h3>Feature: Dynamischer Produkt-Filter & Pagination</h3>
+
+                <img src="docu_images/Filter.png" alt="Screenshot Produkt-Filter in Aktion"
+                    style="max-width:100%; border:1px solid #ccc;">
+
+
+                <table>
+                    <tr>
+                        <th>Use Case / Rolle</th>
+                        <td>Nutzer können die Produktliste nach Preis, Kategorie, Verfügbarkeit und Beliebtheit
+                            filtern,
+                            ohne die
+                            Seite neu zu laden. <br>
+                            <strong>Rolle:</strong> Alle Besucher (Gäste & Kunden).
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Route & Action</th>
+                        <td><code>GET /{controller}/ajaxFilter[/{id}]</code> (verarbeitet in
+                            <code>Controller::ajaxFilter</code>)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>DB-Tabellen / CRUD</th>
+                        <td>Tabelle: <code>Products</code> (Operation: <strong>READ</strong>) <br>
+                            <strong>Dynamische Query:</strong> Nutzt <code>WHERE</code>-Klauseln für Preisrange,
+                            Kategorie-ID,
+                            Keyword-Matching (<code>LIKE</code>) und Bestandsprüfung (<code>inventory > 0</code>).
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Validierung (Server)</th>
+                        <td>
+                            - <strong>Prepared Statements:</strong> Alle Parameter werden via PDO gebunden (Schutz
+                            vor
+                            SQL-Injection).<br>
+                            - <strong>Datentypen:</strong> Explizite Bindung von <code>LIMIT</code> und
+                            <code>OFFSET</code> als
+                            <code>PDO::PARAM_INT</code>.<br>
+                            - <strong>Defaults:</strong> Controller setzt Standardwerte für Preis (0 - 9999) und
+                            Pagination, falls
+                            Parameter fehlen.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Frontend Event</th>
+                        <td><code>change</code>- oder <code>click</code>-Events auf Filter-Elementen (Preis-Slider,
+                            Checkboxen) in
+                            <code>filter.js</code>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>AJAX & Daten</th>
+                        <td>
+                            <strong>Input (GET):</strong> Parameter wie
+                            <code>min, max, available, bestseller, offset, term</code>.<br>
+                            <strong>Output (HTML):</strong> Der Server liefert ein fertiges
+                            <strong>HTML-Snippet</strong> des
+                            Produkt-Grids (gerendert durch <code>ProductView::renderProductGrid</code>).
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Fehlerfall / Feedback</th>
+                        <td>
+                            - <strong>Keine Treffer:</strong> Das Grid bleibt leer; der "Mehr laden"-Button wird
+                            automatisch
+                            ausgeblendet.<br>
+                            - <strong>Pagination:</strong> Bei "Mehr laden" wird das neue HTML-Snippet asynchron an
+                            die
+                            bestehende
+                            Liste angehängt.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="feature-box">
+                <h3>Feature: Produkt-Bewertungen & Sterne-Rating</h3>
+
+                <img src="docu_images/Bewertung.png" alt="Screenshot Produktbewertungen"
+                    style="max-width:100%; border:1px solid #ccc;">
+
+
+                <table>
+                    <tr>
+                        <th>Use Case / Rolle</th>
+                        <td>Kunden können gekaufte Produkte mit 1-5 Sternen und einem optionalen Kommentar bewerten.
+                            <br>
+                            <strong>Rolle:</strong> Eingeloggter User (Recht: <code>rating.create</code>).
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Route & Action</th>
+                        <td><code>POST /rating/store</code> (RatingController::store)</td>
+                    </tr>
+                    <tr>
+                        <th>DB-Tabellen / CRUD</th>
+                        <td>Tabelle: <code>Ratings</code> (Operation: <strong>CREATE / INSERT</strong>). <br>
+                            Zusätzlich <strong>READ</strong>-Operationen mit Aggregaten (<code>AVG</code>,
+                            <code>COUNT</code>) für die
+                            Sterne-Anzeige.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Validierung (Server)</th>
+                        <td>
+                            - <strong>Deduplizierung:</strong> Vor dem Insert prüft das Model, ob für die
+                            Kombination
+                            <code>user_id</code> und <code>product_id</code> bereits eine Bewertung existiert.<br>
+                            - <strong>Integrität:</strong> Prüfung auf Vorhandensein von <code>product_id</code> und
+                            <code>rating_score</code>.<br>
+                            - <strong>Sicherheit:</strong> <code>requireLogin()</code> und RBAC-Check
+                            <code>rating.create</code>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Frontend-Anzeige</th>
+                        <td>Die Anzeige erfolgt <strong>synchron</strong> beim Laden der Produktdetailseite. Der
+                            <code>ProductController</code> fordert die aggregierten Scores sowie die Liste der
+                            Kommentare (via
+                            <code>LEFT JOIN Users</code>) direkt vom <code>RatingModel</code> an.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Fehlerfall / Feedback</th>
+                        <td>
+                            - Falls bereits bewertet wurde, wird kein Duplikat angelegt (stilles Ignorieren oder
+                            Redirect).<br>
+                            - Fehlende Berechtigung führt zu einem <strong>HTTP 403 Forbidden</strong>.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </section>
+
+
+        <section id="pm-ai">
+            <h2>7. Projektmanagement & KI</h2>
+            <h3>7.1 KI-Unterstützung</h3>
+
+            <p>
+                Im Projekt wurde KI <strong>nur punktuell</strong> als Unterstützung
+                genutzt (z. B. für Formulierungen, Debugging-Hinweise und kleine
+                Code-Snippets). Architektur, Datenmodell, Routing, Controller-Logik
+                und Datenbankzugriffe wurden von uns selbst umgesetzt und getestet. Es
+                wurden keine kompletten Features „vollständig durch KI generiert“
+                übernommen, sondern Vorschläge nur nach eigener Prüfung angepasst.
+            </p>
+
+            <p>
+                <strong>Beispiel-Prompts (repräsentativ, nicht vollständig):</strong>
+            </p>
+            <ul>
+                <li>
+                    „Erkläre mir, warum meine PHP-Session im Warenkorb nicht
+                    aktualisiert wird, und nenne typische Fehlerquellen.“
+                </li>
+                <li>
+                    „Wie kann ich in PHP PDO prepared statements korrekt für LIKE-Suche
+                    verwenden?“
+                </li>
+                <li>
+                    „Formuliere eine kurze technische Dokumentation für RBAC
+                    (Rollen/Rechte) anhand folgender Tabellen …“
+                </li>
+            </ul>
+
+            <div class="hint">
+                <strong>Hinweis:</strong> Eine vollständige Prompt-Historie wurde
+                nicht gespeichert; die obigen Beispiele sind typische Fragestellungen,
+                die während der Umsetzung auftraten.
+            </div>
+
+            <h3>7.2 Projektmanagement</h3>
+
+            <h4>Ziel und Vorgehen</h4>
+            <p>
+                Ziel war die Entwicklung eines funktionsfähigen Webshops im Modul DWP
+                mit MVC-Architektur, Datenbankanbindung, RBAC (Rollen &amp;
+                Permissions) sowie dynamischen Funktionen (AJAX, Filter/Suche,
+                Checkout). Wir möchten eine Team-Bewertung; die Umsetzung war durch
+                gemeinsame Basisarbeit und gegenseitige Abhängigkeiten der Module
+                stark verzahnt.
+            </p>
+
+            <h4>Aufwand (Zeitaufwand / Semester)</h4>
+            <p>
+                Da wir zu Beginn Anfänger in PHP/JavaScript/MVC waren, ist ein großer
+                Teil der Zeit in Einarbeitung (Tutorials, Dokumentation, Debugging)
+                geflossen.
+            </p>
+
+            <ul>
+                <li>
+                    <strong>Aufwand pro Person:</strong> ca.
+                    <strong>90 Stunden</strong> (inkl. Tutorials/Einarbeitung)
+                </li>
+                <li>
+                    <strong>Teamaufwand gesamt (3 Personen):</strong> ca.
+                    <strong>270 Stunden</strong>
+                </li>
+            </ul>
+
+            <div class="hint">
+                Die Zeiten wurden nicht minutengenau getrackt, sondern als
+                realistische Schätzung anhand der umgesetzten Arbeitspakete
+                dokumentiert.
+            </div>
+
+            <h4>Grobe Aufteilung (Teamstunden)</h4>
+            <table>
+                <tr>
+                    <th>Arbeitspaket</th>
+                    <th>Aufwand</th>
+                </tr>
+                <tr>
+                    <td>Einarbeitung &amp; Recherche (Tutorials, MVC/PHP/JS, PDO)</td>
+                    <td>~ 60 h</td>
+                </tr>
+                <tr>
+                    <td>Architektur/MVC-Grundgerüst</td>
+                    <td>~ 45 h</td>
+                </tr>
+                <tr>
+                    <td>Produkt-Modul (als gemeinsamer Referenz-Use-Case)</td>
+                    <td>~ 35 h</td>
+                </tr>
+                <tr>
+                    <td>Module parallel (User, Cart/AJAX, Order, Admin, Rating)</td>
+                    <td>~ 80 h</td>
+                </tr>
+                <tr>
+                    <td>Suche/Filter/Load-more + Autocomplete</td>
+                    <td>~ 20 h</td>
+                </tr>
+                <tr>
+                    <td>Testen/Bugfixing/Polishing</td>
+                    <td>~ 20 h</td>
+                </tr>
+                <tr>
+                    <td>Dokumentation (Diagramme, Flows, Texte)</td>
+                    <td>~ 10 h</td>
+                </tr>
+                <tr>
+                    <th>Summe</th>
+                    <th>~ 270 h</th>
+                </tr>
+            </table>
+
+            <h4>Zusammenarbeit &amp; Qualitätssicherung</h4>
+            <ul>
+                <li>
+                    Regelmäßige kurze Absprachen zu Architektur/Routes/DB-Struktur
+                </li>
+                <li>
+                    Gemeinsame Konventionen: konsistente Routen, Session-Struktur
+                    (<code>$_SESSION['user']</code>,
+                    <code>$_SESSION['permissions']</code>,
+                    <code>$_SESSION['cart']</code>)
+                </li>
+                <li>
+                    Gegenseitiges Testen neuer Features (insb. RBAC, AJAX-Endpoints,
+                    Checkout)
+                </li>
+                <li>
+                    Fokus auf „funktional und nachvollziehbar“ statt optischem
+                    Feinschliff (zeitbedingt)
+                </li>
+            </ul>
+        </section>
+
+        <section id="conclusion">
+            <h2>8. Reflexion</h2>
+
+            <h3>Vorgehen und Lernkurve (wie wir gearbeitet haben)</h3>
+            <p>
+                Zu Beginn hatten wir wenig Erfahrung mit PHP, JavaScript und dem
+                MVC-Pattern. Deshalb haben wir als erstes gemeinsam ein
+                MVC-Grundgerüst aufgebaut, um eine saubere Struktur zu schaffen, bevor
+                einzelne Features dazu kamen. Dieses Grundgerüst (Routing → Controller
+                → Model → View) war die Basis, auf der später alle weiteren Module
+                aufbauen konnten.
+            </p>
+            <p>
+                Nachdem das Framework stand, haben wir gemeinsam das Produkt-Modul
+                umgesetzt (Produktliste, Detailseiten, Kategorien/Anzeige,
+                Datenbankzugriff). Dadurch konnten wir das MVC-Prinzip einmal
+                „vollständig“ an einem Beispiel durchspielen und sicherstellen, dass
+                die Code-Struktur funktioniert.
+            </p>
+            <p>
+                Erst danach haben wir die Arbeit aufgeteilt: Jede/r hat ein eigenes
+                MVC-Modul umgesetzt (z. B. User, Rating, Order, Admin-Funktionen,
+                Cart/AJAX). Das war hilfreich, weil wir so parallel arbeiten konnten,
+                aber gleichzeitig mussten wir sehr genau auf Konsistenz achten
+                (Routes, Session-Struktur, Fehlerbehandlung, Naming).
+            </p>
+
+            <h3>Herausforderungen und Lösungen</h3>
+
+            <h4>Einarbeitung in PHP, JavaScript und MVC</h4>
+            <p>
+                Zu Beginn war die größte Hürde, dass wir wenig praktische Erfahrung
+                mit PHP, JavaScript und dem MVC-Pattern hatten. Besonders ungewohnt
+                war das Zusammenspiel aus Routing, Controllern, Models und
+                Views/Templates.
+            </p>
+            <p>
+                <strong>Lösung:</strong>
+                Wir haben die Architektur schrittweise aufgebaut: zuerst ein einfaches
+                Routing (Front Controller), dann Basis-Controller und Views,
+                anschließend Model-Klassen mit Datenbankzugriffen. Durch kleine
+                Iterationen (erst „Liste anzeigen“, dann „Detailseite“, dann
+                „Warenkorb“) konnten wir das Pattern besser verstehen und konsistent
+                anwenden.
+            </p>
+
+            <h4>Routing und saubere URL-Struktur</h4>
+            <p>
+                Ein Problem war am Anfang, wie man dynamische URLs (z. B.
+                <code>/product/show/5</code>) sauber abbildet und dabei ungültige
+                Routen verhindert.
+            </p>
+            <p>
+                <strong>Lösung:</strong> Wir haben ein zentrales Routing über
+                <code>index.php</code> + <code>.htaccess</code> verwendet und die
+                Pfade serverseitig validiert. Dadurch laufen alle Requests
+                kontrolliert durch einen Einstiegspunkt, und falsche URLs führen nicht
+                zu unkontrollierten Dateizugriffen.
+            </p>
+
+            <h4>Datenbankmodellierung und „Snapshot“-Daten</h4>
+            <p>
+                Eine Herausforderung war zu entscheiden, wie Bestellungen und Adressen
+                gespeichert werden sollen. Wenn ein User seine Adresse ändert, darf
+                eine alte Bestellung nicht „mitwandern“.
+            </p>
+            <p>
+                <strong>Lösung:</strong> Für Bestellungen nutzen wir eine eigene
+                Tabelle <code>Order_Addresses</code> als Snapshot. Dadurch bleibt eine
+                Bestellung historisch korrekt, unabhängig von späteren
+                Profiländerungen.
+            </p>
+
+            <h4>Sessions und Warenkorb-Logik</h4>
+            <p>
+                Der Warenkorb war komplexer als erwartet: Mengen ändern, Items
+                entfernen, Gesamtpreis korrekt berechnen und dabei konsistente Daten
+                behalten. Außerdem musste das UI schnell reagieren (ohne Reload).
+            </p>
+            <p>
+                <strong>Lösung:</strong>
+                Der Warenkorb wird in der Session gehalten und über AJAX
+                (<code>cart/add</code>,
+                <code>cart/remove</code>) aktualisiert. Nach jeder Änderung wird
+                serverseitig die Session validiert und ein JSON-Ergebnis
+                zurückgegeben, das im Frontend direkt angezeigt wird.
+            </p>
+
+            <h4>AJAX/Frontend-Interaktionen</h4>
+            <p>
+                Die AJAX-Features (Warenkorb, Filter/Load-more, Suche) waren
+                fehleranfällig, weil Client- und Serverlogik exakt zusammenpassen
+                müssen (Parameter, Rückgabeformate, Fehlerfälle).
+            </p>
+            <p>
+                <strong>Lösung:</strong> Wir haben uns auf klar definierte
+                Request/Response-Formate geeinigt (meist JSON oder HTML-Fragmente) und
+                serverseitig konsequent Validierung + Fehlercodes (z. B.
+                <code>401 Unauthorized</code> / <code>403 Forbidden</code>) umgesetzt.
+                Im Frontend haben wir Feedbackfälle ergänzt (z. B. bei Stock-Limit).
+            </p>
+
+            <h4>RBAC (Rollen &amp; Permissions)</h4>
+            <p>
+                Das Rollenmodell war anfangs schwer zu durchdenken: Welche Rollen
+                brauchen wir? Wo prüfen wir Rechte? Nur im UI zu verstecken ist
+                unsicher.
+            </p>
+            <p>
+                <strong>Lösung:</strong> Permissions werden beim Login geladen und in
+                <code>$_SESSION['permissions']</code> gespeichert. Kritische
+                Controller-Actions prüfen Berechtigungen serverseitig
+                (<code>requireLogin</code>, <code>denyAccessUnlessGranted</code>).
+                Dadurch sind Admin-Funktionen nicht nur im Frontend „versteckt“,
+                sondern vor allem serverseitig auf Endpoint-Ebene abgesichert, selbst
+                wenn jemand versucht, URLs manuell aufzurufen.
+            </p>
+
+            <h4>Passwort-Reset-Flow</h4>
+            <p>
+                Der Passwort-Reset war neu für uns (Token-Erstellung, Ablaufzeit,
+                Sicherheit).
+            </p>
+            <p>
+                <strong>Lösung:</strong>
+                Wir haben einen Token-Flow umgesetzt (<code>password_resets</code>),
+                Tokens sind zeitlich begrenzt und werden nach erfolgreichem Reset
+                gelöscht.
+            </p>
+
+            <h3>Bekannte Bugs / Einschränkungen</h3>
+            <ul>
+                <li>
+                    Rating löschen (<code>rating/remove</code>) ist im Controller
+                    vorbereitet, wird aber im UI nicht angeboten und ist mangels
+                    Permission <code>rating.delete</code> aktuell nicht ausführbar.
+                </li>
+                <li>
+                    Einige Validierungen sind bewusst pragmatisch gehalten (z. B.
+                    einfache Formchecks). In einem größeren Projekt würden wir
+                    Validierung zentralisieren (z. B. Validator-Klassen + konsistente
+                    Fehlermeldungen).
+                </li>
+                <li>
+                    Das Projekt ist funktionsfähig, aber aufgrund der Zeit wurden nicht
+                    alle Features (z. B. komplexere UX, Edge-Cases) vollständig
+                    „polished“.
+                </li>
+                <li>
+                    Passwort vergessen: Der Reset-Link wird nicht per Mail verschickt.
+                    Stattdessen wird nach dem Absenden direkt auf
+                    <code>user/resetPasswordForm?token=...</code> weitergeleitet
+                    (Demo-Verhalten).
+                </li>
+            </ul>
+
+            <h3>Zusatzfeatures / Highlights</h3>
+            <ul>
+                <li>
+                    RBAC mit Rollen und granularen Permissions (Admin/Manager-Bereiche).
+                </li>
+                <li>
+                    AJAX-Warenkorb (Add/Remove, direkte Aktualisierung, Stock-Feedback).
+                </li>
+                <li>Filter + Load More (dynamisches Nachladen ohne Seitenreload).</li>
+                <li>AJAX-Autocomplete in der Suche + eigene Suchergebnisseite.</li>
+                <li>
+                    Gastbestellungen (Orders mit optionaler <code>user_id</code>).
+                </li>
+                <li>Passwort-Reset mit Token + Ablaufzeit.</li>
+            </ul>
+
+            <h3>Was wir aus dem Projekt mitnehmen</h3>
+            <p>
+                Wir haben gelernt, wie man eine Webanwendung strukturiert (MVC), wie
+                Request-Handling und Sessions funktionieren und warum serverseitige
+                Sicherheitsprüfungen (RBAC) notwendig sind. Außerdem haben wir
+                gesehen, dass viele „kleine“ Features (Warenkorb, Filter, Suche) in
+                Summe sehr viele Abstimmungsdetails zwischen Frontend, Backend und
+                Datenbank benötigen.
+            </p>
+        </section>
+    </main>
+</body>
+
+</html>

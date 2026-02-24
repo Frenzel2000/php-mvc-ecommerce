@@ -1,0 +1,286 @@
+body {
+  height: 100%;
+  min-height: 100vh; /*Body bekommt volle Höhe auch wenn der content nicht die gesamte viewport höhe ausfüllt*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main {
+  flex: 1; /*main element nimmt den gesamten übrigen vertikalen Platz im viewport ein, damit footer nicht in der mitte schwebt */
+  align-items: center;
+}
+
+.product_main {
+  width: 100%;
+  margin-top: 23%;
+  display: flex;
+  gap: 10px;
+}
+
+.gallery {
+  display: flex;
+  gap: 3%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.product_picture_gallery {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  max-width: none;
+  max-height: 500px;
+  width: fit-content;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 4%;
+}
+
+.secondary_product_picture {
+  width: 100%;
+  height: auto;
+  max-width: 120px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 4px;
+}
+
+.secondary_product_picture:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 2px solid #ccc;
+}
+
+.main_product_picture {
+  width: 100%;
+  height: auto;
+  max-width: 500px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.product_options {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 400px;
+}
+
+.product_options > p {
+  color: grey;
+}
+
+.select_flavour_form_group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  gap: 5px;
+}
+
+.select_flavour_form_group select {
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 200px;
+  height: 40px;
+}
+
+.price_group {
+  margin-top: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+.price_group > p {
+  color: grey;
+  margin-top: 1px;
+}
+
+.shipping_info {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.add_to_cart_button {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(42, 183, 42);
+  width: 200px;
+  height: 40px;
+  border-radius: 50px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 7px;
+}
+
+.add_to_cart_text {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 4px;
+  color: white;
+  align-items: center;
+}
+
+.add_to_cart_button:hover {
+  transform: scale(1.05);
+  background-color: green;
+  transition: 0.2s ease-in;
+}
+
+.product_secondary {
+  max-width: 100%;
+  max-height: fit-content;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  height: 50vh;
+  gap: 3%;
+}
+
+.product_secondary p {
+  color: #6b6363;
+  width: 100%;
+  max-width: 80vw;
+  text-align: left;
+}
+
+hr {
+  color: gray;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.feedback_button {
+  max-width: 100%;
+  width: 100%;
+  height: 50px;
+  border-radius: 50px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  /*background color none, damit feedback button nicht zu sehr ins Auge sticht und ablenkt*/
+
+  background-color: none;
+}
+
+.feedback_button:hover {
+  transform: scale(1.05);
+  transition: 0.2s ease-in;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.stars_wrapper {
+  max-width: 60%;
+  display: inline-flex;
+  justify-content: center;
+  margin: none;
+  padding-inline: none;
+}
+
+.stars_wrapper svg {
+  width: 15%;
+}
+
+/*responsive Design ab 1180px Breite (product_picture_gallery klappt nach unten)*/
+@media (max-width: 1180px) {
+  .content_wrapper {
+    height: 90%;
+  }
+
+  .gallery {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .product_picture_gallery {
+    flex-direction: row;
+    order: 1;
+    height: fit-content;
+  }
+  .main_product_picture {
+    width: 40vw;
+  }
+}
+
+/*responsive Design ab 830px Breite (für Handy bildschirme)*/
+@media (max-width: 830px) {
+  .content_wrapper {
+    width: 100vw;
+    margin-top: 350px;
+  }
+
+  /*Seiteninhalt wird vertikal ausgerichtet (für scrolling)*/
+  .product_main {
+    flex-direction: column;
+    align-items: center;
+    gap: 3vh;
+  }
+  /*Dynamische Schriftgrößen für product_options um neuen Platz besser auszunutzen*/
+
+  /*Skalierung der Produktbilder*/
+  .main_product_picture {
+    width: 70vw;
+  }
+  .secondary_product_picture {
+    height: 7vh;
+  }
+  /*product_options rutschen unter die Produktbilder*/
+  .product_options {
+    width: 80vw;
+    align-items: center;
+    justify-content: center;
+  }
+  .product_options h1 {
+    font-size: clamp(18px, 7vw, 24px);
+  }
+  .product_options > p {
+    text-align: center;
+    font-size: clamp(14px, 4vw, 20px);
+  }
+
+  .price_group {
+    align-items: center;
+  }
+
+  .select_flavour_form_group {
+    align-items: center;
+  }
+  .select_flavour_form_group label {
+    font-size: clamp(14px, 4vw, 24px);
+  }
+  /*Dynmaische Schriftgrößen auch für product_secondary für angepasstes Verhalten an die obigen dynamischen Schriftgrößen*/
+  .product_secondary {
+    margin-top: 16vh;
+    margin-bottom: 20vh;
+  }
+
+  .product_secondary h1 {
+    font-size: clamp(18px, 4vw, 24px);
+  }
+
+  .product_secondary p {
+    font-size: clamp(16px, 2vw, 24px);
+  }
+}

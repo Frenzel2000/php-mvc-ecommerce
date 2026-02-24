@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Über Uns</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Project CSS (richtig für static/html/...) -->
+  <link rel="stylesheet" href="../css/general_settings/normalize.css" />
+  <link rel="stylesheet" href="../css/general_settings/color_scheme.css" />
+  <link rel="stylesheet" href="../css/index.css/header.css" />
+  <link rel="stylesheet" href="../css/index.css/footer.css" />
+  <link rel="stylesheet" href="../css/about_us/about_us.css" />
+
+  <!-- Burger-Menu-Icon -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
+
+  <!-- Social Media Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+  <header>
+    <!-- Logo, Suchleiste, Konto, Warenkorb-->
+    <div class="upper_header">
+      <a href="../../" class="logo">
+        <img src="../../assets/images/pwe.png" alt="PowerPure-Logo" />
+      </a>
+
+      <!-- Suchleiste -->
+      <form action="#" method="get" class="search-form">
+        <input type="search" placeholder="Suchen..." />
+        <button type="submit" aria-label="Suche starten">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="white" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </form>
+
+      <!-- Rechter Bereich -->
+      <div class="main-header-right">
+        <select name="select-language" id="select-language">
+          <option value="de">DE</option>
+          <option value="en">EN</option>
+        </select>
+
+        <a href="../../user/loginForm" class="personal-account">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="black" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+
+        <a href="../../favorite" class="favorite-products">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="black" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" class="feather feather-star">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+        </a>
+
+        <a href="../../cart/show" class="shopping-cart">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="black" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Navigationsleiste -->
+    <nav>
+      <input type="checkbox" id="toggle_button" />
+      <label for="toggle_button">
+        <span class="material-symbols-rounded"> menu </span>
+      </label>
+
+      <ul>
+        <!-- deine Menüs kannst du lassen wie sie sind -->
+        <li><a href="../../">Home</a></li>
+        <li><a href="./about_us.html">Über uns</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!--About Us Block -->
+    <section class="about_us_block">
+      <div class="about_us_text">
+        <h2>Über uns</h2>
+        <p>Maximale Leistung. Reine Inhaltsstoffe. Dein Erfolg.</p>
+      </div>
+      <div class="about_us_image">
+        <img src="../../assets/images/Sportler_mit_LogoShaker_ohne_Hintergrund.png" alt="Sportler mit Shaker" />
+      </div>
+    </section>
+
+    <!--Wer wir sind-->
+    <section class="wer_wir_sind">
+      <div class="wir">
+        <div class="text">
+          <h2>Wer wir sind</h2>
+          <p>
+            Wir sind ein leidenschaftliches Team aus Experten für Ernährung,
+            Training und Innovation. Mit wissenschaftlichem Know-how,
+            modernster Produktion und echtem Fitness-Spirit entwickeln wir
+            Produkte, die dich in deinem Alltag und auf deinem Weg zu deinen
+            Zielen optimal unterstützen.
+          </p>
+        </div>
+        <img src="../../assets/images/Firma.png" alt="Firma" />
+      </div>
+
+      <div class="community">
+        <img src="../../assets/images/Community.png" alt="Community" />
+        <div class="text">
+          <h2>Unsere Community</h2>
+          <p>
+            Unsere Community besteht aus tausenden Sportlern. Von Bodybuildern
+            zu Marathonläufern und von Hochleistungssportlern zu frischen
+            Anfängern. Die PowerPure Community ist eine diverse Truppe und wir
+            sind Stolz auf jedes Mitglied, das sich uns anschließt.
+          </p>
+        </div>
+      </div>
+
+      <div class="wer_wir_sind_block">
+        <img src="../../assets/images/wer-wir-sind_Block.png" alt="wer-wir-sind-Block" />
+      </div>
+    </section>
+
+    <!--Mission-->
+    <section class="mission">
+      <h2>Unsere Mission</h2>
+      <p>
+        Wir bringen dir leistungsstarke Supplements mit klaren Zutaten und
+        maximaler Wirkung. Ohne Schnickschnack - nur das, was dein Körper
+        wirklich braucht. Für deinen Fortschritt, jeden Tag.
+        <br />Wir bieten dir optimalen Support in 4 Bereichen.
+      </p>
+
+      <section class="interests_section">
+        <h2>Wofür interessierst du dich?</h2>
+        <div class="wrapper_interests">
+          <div class="interest">
+            <img src="../../assets/images/bodybuilder.jpg" alt="Muskelaufbau" />
+            <h3>Muskelaufbau</h3>
+          </div>
+
+          <div class="interest">
+            <img src="../../assets/images/cardio.jpg" alt="Ausdauer" />
+            <h3>Ausdauer</h3>
+          </div>
+
+          <div class="interest">
+            <img src="../../assets/images/diet.jpg" alt="Abnehmen" />
+            <h3>Abnehmen</h3>
+          </div>
+
+          <div class="interest">
+            <img src="../../assets/images/healthy.jpg" alt="Gesundheit" />
+            <h3>Gesundheit</h3>
+          </div>
+        </div>
+      </section>
+
+      <div class="mission_block">
+        <img src="../../assets/images/mission_block.png" alt="Team_Block" />
+      </div>
+    </section>
+
+    <!--Team-Mitglieder-->
+    <section class="team">
+      <h2>Unser Team</h2>
+      <p>
+        Hinter PowerPure steht ein leidenschaftliches Team aus
+        Ernährungswissenschaftlern, Athleten und kreativen Köpfen.
+      </p>
+
+      <div class="team_members">
+        <div class="member">
+          <img src="../../assets/images/Viktor_Brandmeier.jpg" alt="Viktor Brandmaier" />
+          <h3>Viktor</h3>
+          <p>
+            Leitet die Produktentwicklung mit Fokus auf Qualität und
+            Innovation.
+          </p>
+        </div>
+
+        <div class="member">
+          <img src="../../assets/images/Ottmar_Frenzel.jpg" alt="Ottmar Frenzel" />
+          <h3>Ottmar</h3>
+          <p>
+            Verantwortlich für unsere Community und Social-Media-Strategie.
+          </p>
+        </div>
+
+        <div class="member">
+          <img src="../../assets/images/emre.jpeg" alt="Emre" />
+          <h3>Emre</h3>
+          <p>
+            Sportwissenschaftler und Coach - bringt Praxis und Wissenschaft
+            zusammen.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <nav class="footer-nav" aria-label="Footer Navigation">
+        <ul>
+          <li><a href="#">Datenschutz</a></li>
+          <li><a href="#">AGB</a></li>
+          <li><a href="#">Impressum</a></li>
+          <li><a href="#">Kundensupport</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-social" aria-label="Soziale Netzwerke">
+        <a href="https://www.facebook.com/?locale=de_DE" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://x.com" aria-label="Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.instagram.com" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.linkedin.com/home" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+    </div>
+
+    <p class="footer-copy">&copy; 2025 PowerPure. Alle Rechte vorbehalten.</p>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+/* Grundlegendes Styling für den Footer-Bereich */
+footer {
+  background-color: var(
+    --color-secondary
+  ); /* Hintergrundfarbe vom Footer (CSS-Variable) */
+  color: white; /* Standard-Textfarbe weiß */
+  padding: 40px 0; /* Innenabstand: 25px oben/unten, 30px links/rechts */
+  font-size: 15px; /* Grundschriftgröße */
+  box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.1); /* Leichter Schatten oben am Footer für Tiefe */
+  width: 100%;
+  flex-shrink: 0;
+  position: relative;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/* Container innerhalb des Footers für Inhalte, zentriert und mit max. Breite */
+.footer-inner {
+  max-width: 1200px; /* Maximale Breite, damit es nicht zu breit wird */
+  margin: 0 auto; /* Zentriert den Container horizontal */
+  display: flex; /* Flexbox Layout für flexible Anordnung der Elemente */
+  justify-content: space-between; /* Elemente links und rechts verteilen */
+  align-items: center; /* Vertikale Ausrichtung der Items zentriert */
+  padding-bottom: 15px; /* Innenabstand unten */
+}
+
+/* Navigation im Footer: Liste ohne Aufzählungszeichen */
+.footer-nav ul {
+  list-style: none; /* Entfernt die Standard-Punkte */
+  padding: 0; /* Kein Innenabstand */
+  margin: 0; /* Kein Außenabstand */
+  display: flex; /* Flexbox, um die Links nebeneinander anzuzeigen */
+  gap: 30px; /* Abstand zwischen den Listenelementen */
+}
+
+/* Styling für die Links in der Footer-Navigation */
+.footer-nav ul li a {
+  color: #fff; /* Weiße Schriftfarbe */
+  text-decoration: none; /* Kein Unterstrich */
+  font-weight: 600; /* Fett gedruckt */
+  font-size: 15px; /* Schriftgröße */
+  transition: color 0.3s ease; /* Weicher Farbwechsel beim Hover */
+  border-bottom: 2px solid transparent; /* Unsichtbarer Unterstrich (Platzhalter) */
+  padding: 5px 0; /* Vertikaler Innenabstand, um "Klickbereich" zu vergrößern */
+}
+
+/* Hover- und Fokuszustand für Links: Schriftfarbe ändern, kein Hintergrund */
+.footer-nav ul li a:hover,
+.footer-nav ul li a:focus {
+  color: var(--color-primary); /* Textfarbe bei Hover/Fokus (CSS-Variable) */
+  background-color: transparent; /* Hintergrund transparent, um unerwünschte Farbe zu verhindern */
+  outline: none; /* Entfernt den Standard-Fokusrahmen (besser selbst gestalten, falls nötig) */
+}
+
+/* Styling für Social-Media-Links */
+.footer-social {
+  display: flex;
+}
+.footer-social a {
+  color: #fff; /* Weiße Farbe für Icons */
+  font-size: 20px; /* Größe der Icons */
+  margin-left: 20px; /* Abstand zwischen den Icons */
+  transition: color 0.3s ease; /* Weicher Farbwechsel beim Hover */
+  display: inline-flex; /* Flexbox für bessere Ausrichtung */
+  align-items: center; /* Vertikale Zentrierung der Icons */
+  text-decoration: none;
+}
+
+/* Hover- und Fokuszustand für Social-Links */
+.footer-social a:hover,
+.footer-social a:focus {
+  color: var(--color-primary); /* Farbwechsel bei Hover/Fokus */
+  outline: none; /* Entfernt Standard-Fokusrahmen */
+}
+
+/* Copyright-Text unter dem Footer */
+.footer-copy {
+  text-align: center; /* Zentrierter Text */
+  margin-top: 20px; /* Abstand nach oben */
+  font-size: 13px; /* Kleinere Schrift */
+  opacity: 0.7; /* Leicht transparent für dezentes Aussehen */
+}
+
+/* --- Responsives Design --- */
+
+/* Tablet-Ansicht: Bildschirmbreite 481px bis 1024px */
+@media (max-width: 1024px) and (min-width: 481px) {
+  .footer-inner {
+    flex-wrap: wrap; /* Elemente umbrechen, wenn zu breit */
+    justify-content: center; /* Zentrierte Ausrichtung */
+    gap: 20px; /* Abstand zwischen den Elementen */
+    padding-bottom: 20px; /* Etwas mehr Abstand unten */
+  }
+
+  .footer-nav ul {
+    gap: 25px; /* Etwas kleinerer Abstand zwischen Links */
+    justify-content: center; /* Zentrierung der Linkliste */
+    flex-wrap: wrap; /* Umbruch bei zu wenig Platz */
+  }
+
+  .footer-social {
+    order: 2; /* Reihenfolge ändern, Social-Icons nach unten */
+    margin-top: 10px; /* Abstand nach oben */
+  }
+
+  .footer-social a {
+    font-size: 22px; /* Größere Icons auf Tablet */
+    margin-left: 15px; /* Weniger Abstand zwischen Icons */
+  }
+}
+
+/* Mobile Ansicht: Bildschirmbreite max. 480px */
+@media (max-width: 480px) {
+  .footer-inner {
+    flex-direction: column; /* Elemente untereinander statt nebeneinander */
+    align-items: center; /* Zentrierte Ausrichtung */
+    gap: 20px; /* Abstand zwischen Elementen */
+    padding-bottom: 15px; /* Innenabstand unten */
+  }
+
+  .footer-nav ul {
+    flex-direction: column; /* Links untereinander */
+    gap: 15px; /* Abstand zwischen den Links */
+    align-items: center; /* Zentrierung */
+  }
+
+  .footer-social {
+    order: 2; /* Reihenfolge: Social-Icons nach unten */
+    display: flex; /* Flexbox für Icons */
+    justify-content: center; /* Zentrierung */
+    gap: 25px; /* Abstand zwischen Icons */
+    margin-top: 10px; /* Abstand nach oben */
+  }
+
+  .footer-social a {
+    margin: 0; /* Kein linker Abstand mehr */
+    font-size: 26px; /* Größere Icons für Touchfreundlichkeit */
+  }
+
+  .footer-copy {
+    margin-top: 25px; /* Abstand nach oben */
+    font-size: 12px; /* Kleinere Schrift */
+    opacity: 0.5; /* Deutlich transparenter für dezentes Design */
+  }
+}

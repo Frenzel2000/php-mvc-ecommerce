@@ -1,0 +1,44 @@
+@startuml request_flow
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+autonumber
+
+actor "User" as User
+participant "index.php\n(Front Controller)" as Index
+participant "routing.php" as Router
+participant "UserController" as Controller
+participant "UserModel" as Model
+database "Database" as DB
+participant "UserView" as View
+
+
+User -> Index : HTTP GET /user/profile
+activate Index
+Index -> Router : resolveRoute("/user/profile")
+activate Router
+Router --> Index : "UserController", "profile"
+deactivate Router
+Index -> Controller : new UserController()
+activate Controller
+Index -> Controller : profile()
+note right of Controller : Login Check
+Controller -> Controller : requireLogin()
+Controller -> Model : getByIDWithAddress(id)
+activate Model
+Model -> DB : SELECT * FROM users...
+activate DB
+DB --> Model : Result Row
+deactivate DB
+Model --> Controller : data
+deactivate Model
+Controller -> View : new UserView()
+activate View
+Controller -> View : render_html(data)
+View --> Controller : HTML String
+deactivate View
+Controller --> Index : HTML Output
+deactivate Controller
+Index --> User : HTTP 200 OK (HTML Page)
+deactivate Index
+
+@enduml

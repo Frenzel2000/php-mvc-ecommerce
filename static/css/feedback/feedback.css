@@ -1,0 +1,136 @@
+#wrapper_review_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.review_section {
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 70%;
+  max-width: 900px;
+  height: auto;
+  background: #fff;
+}
+
+.review_section h2 {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: var(--color-primary);
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-form label {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.review-form input,
+.review-form textarea,
+.review-form button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.review-form select {
+  width: 40%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.review-form textarea {
+  resize: none;
+}
+
+.review-form input::placeholder,
+.review-form textarea::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.review-form button {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.review-form button:hover {
+  background-color: var(--color-secondary);
+}
+
+.stars {
+  display: flex;
+  flex-direction: row-reverse; /* Damit der hover effekt funktioniert*/
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.stars input {
+  display: none;
+}
+
+.stars label {
+  font-size: 3rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 0 2px;
+}
+
+.stars input:checked ~ label,
+.stars label:hover,
+.stars label:hover ~ label {
+  color: gold;
+}
+
+.upload-note {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.2rem;
+}
+
+@media (max-width: 768px) {
+  #wrapper_review_page {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+
+  .review_section {
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 30px;
+  }
+
+  .review_section h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 460px) {
+  .review_section h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 330px) {
+  .review_section h2 {
+    font-size: 1.5rem;
+  }
+}

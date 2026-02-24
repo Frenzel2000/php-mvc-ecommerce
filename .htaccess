@@ -1,0 +1,11 @@
+#aktiviert Apache-Rewrite
+RewriteEngine On
+#Basisverzeichnis festgelegt
+RewriteBase /ws2526_dwp_frenzel_kocyatagi_brandmaier/
+#Wenn die angeforderte Ressource eine existierende Datei oder ein existierendes Verzeichnis ist, dann keine Umschreibung
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+#Alle anderen Anfragen an index.php weiterleiten und den Pfad als Query-Parameter übergeben
+RewriteRule ^(.*)$ index.php?path=$1 [L,QSA]

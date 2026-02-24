@@ -1,0 +1,28 @@
+@startwbs
+* PowerPure Webshop \n (Home View)
+** Globaler Header & Navigation
+*** Hauptmenü (<nav>)
+**** Kategorien (Dropdown)
+***** Kategorie-Seite
+**** Über uns
+**** Admin-Portal \n (Nur Admins)
+***** Dashboard
+*** Service-Leiste
+**** Suchfunktion
+***** Suchergebnisse
+**** User-Icons
+***** Account / Login
+***** Warenkorb
+** Home Page Content (Body)
+*** Bestseller Sektion
+**** Einzelprodukt
+***** Warenkorb
+*** Kategorie-Übersicht (Kacheln)
+**** Kategorie-Seite
+***** Filter & Produktliste
+** Footer (Statische Seiten)
+*** Datenschutz
+*** AGB
+*** Impressum
+*** Kundensupport
+@endwbs

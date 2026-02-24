@@ -1,0 +1,109 @@
+#wrapper_login_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+  gap: 100px;
+}
+
+#wrapper_logo {
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+#wrapper_logo img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.loginformular {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 70%;
+  max-width: 900px;
+  height: auto;
+}
+.loginformular h2 {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: var(--color-primary);
+}
+
+.loginformular input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.loginformular input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.login_button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 40%;
+  text-decoration: none;
+}
+
+.login_button {
+  display: inline-flex;
+  justify-content: center;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.login_button:hover {
+  background-color: var(--color-secondary);
+}
+
+.registration_link a {
+  color: inherit;
+}
+
+#contact_page_right h2 {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  html {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .loginformular {
+    margin-bottom: 30px;
+  }
+}
+@media (max-width: 460px) {
+  .loginformular h2 {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 330px) {
+  .loginformular h2 {
+    font-size: 1.5rem;
+  }
+}

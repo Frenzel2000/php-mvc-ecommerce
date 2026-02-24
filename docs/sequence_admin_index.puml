@@ -1,0 +1,48 @@
+@startuml request_flow
+skinparam sequenceMessageAlign center
+skinparam responseMessageBelowArrow true
+autonumber
+
+actor "Admin" as Admin
+participant "index.php\n(Front Controller)" as Index
+participant "routing.php" as Router
+participant "AdminController" as Controller
+participant "Auth\n(RBAC)" as Auth
+participant "AdminView" as View
+
+Admin -> Index : HTTP GET /admin/index
+activate Index
+Index -> Router : resolveRoute("/admin/index")
+activate Router
+Router --> Index : "AdminController", "index"
+deactivate Router
+Index -> Controller : new AdminController()
+activate Controller
+Index -> Controller : index()
+note right of Controller : Login Check
+Controller -> Controller : requireLogin()
+Controller -> Auth : hasPermission()
+activate Auth
+note right of Controller : Permission Check
+Auth --> Controller : true
+deactivate Auth
+
+loop Collects Permissions
+        note right of Controller: Fills $permissions Array
+        Controller -> Auth : hasPermission($permission)
+        activate Auth
+        Auth --> Controller : bool
+        deactivate Auth
+    end
+
+Controller -> View : new AdminView()
+activate View
+Controller -> View : render_html($permissions)
+View --> Controller : HTML String
+deactivate View
+Controller --> Index : HTML Output
+deactivate Controller
+Index --> Admin : HTTP 200 OK (HTML Page)
+deactivate Index
+
+@enduml

@@ -1,0 +1,44 @@
+.hero_banner {
+  display: flex;
+  width: 100%;
+  max-height: 850px;
+  justify-content: center;
+}
+
+/* Stil für das Bild im Hero-Banner */
+.hero_banner img {
+  padding-top: 200px; /*Abstand oben, wegen header fixed*/
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-color: #02172d;
+}
+/* tritt erst bei media auf */
+.hero_banner .background_block {
+  display: none; /* Hintergrundblock standardmäßig ausblenden */
+  background-color: #02172d;
+}
+
+/* Responsive Design: Ab einer Bildschirmbreite von 1100px */
+@media (min-width: 1100px) {
+  .hero_banner {
+    background-color: #02172d;
+    justify-content: center; /* Zentriert den Inhalt horizontal */
+  }
+
+  .hero_banner img {
+    width: 50vw; /* Bild nimmt nur die halbe Breite des Viewports ein */
+    /* so soll das Bild nicht unscharf werden */
+  }
+}
+@media (max-width: 720px) {
+  .hero_banner img {
+    padding-top: 300px;
+    height: 600px;
+  }
+}
+@media (max-width: 400px) {
+  .hero_banner img {
+    height: 500px;
+  }
+}

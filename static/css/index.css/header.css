@@ -1,0 +1,465 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10000;
+
+  /* Hintergrund, damit Content beim Scrollen nicht durchscheint */
+  background-color: var(--color-bg-light, #fff);
+}
+:root {
+  --header-offset: 0px;
+}
+
+/* Optional: Anchor-Links springen nicht unter den Header */
+html {
+  scroll-padding-top: var(--header-offset);
+}
+/* Oberer Header-Bereich mit Logo, Suchleiste, Konto usw. */
+.upper_header {
+  height: auto;
+  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.logo,
+.main-header-right {
+  flex: 1 1 auto;
+}
+.logo {
+  padding-left: 1rem;
+}
+/* Logo-Bild: feste Größe */
+img[alt="PowerPure-Logo"] {
+  height: 70px;
+  width: 100px;
+}
+/* Suchformular-Styling */
+.search-form {
+  position: relative;
+  display: flex;
+  min-width: auto;
+  max-width: 800px;
+  flex: 1 1 auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: visible;
+  z-index: 1001;
+}
+
+/* Suchfeld */
+.search-form input[type="search"] {
+  flex: 1;
+  border: none;
+  padding: 12px 16px;
+  font-size: 16px;
+  border-radius: 9999px 0 0 9999px;
+  outline: none;
+  background-color: transparent;
+}
+
+/* Entfernt das standardmäßige "x"-Icon im Input (WebKit-Browser) */
+.search-form input::-webkit-search-cancel-button {
+  display: none;
+}
+
+/* Suchbutton */
+.search-form button {
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 0 9999px 9999px 0;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover-Farbe für den Button */
+.search-form button:hover {
+  background-color: var(--color-accent);
+  filter: brightness(0.9);
+}
+
+/* Dropdown Liste der Produke, die durch Suche angezeigt werden*/
+.search-results-dropdown {
+  position: absolute;
+  top: 115%;
+  left: 15px;
+  right: 15px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  display: none;
+  max-height: 400px;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.search-results-dropdown.active {
+  display: block;
+}
+
+/* Einzelne Prudkte, die durch Suche angezeigt werden*/
+.search-result-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  border-bottom: 1px solid #f0f0f0;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.2s;
+}
+
+.search-result-item:hover {
+  background-color: #f5f5f5;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+/* Kleines Bild im Ergebnis */
+.search-result-thumb {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 12px;
+}
+
+/* Rechter Bereich im Header (Sprache, Konto, Favoriten, Warenkorb) */
+.main-header-right {
+  display: flex;
+  align-items: center;
+  gap: 40px; /* Abstand zwischen Icons */
+}
+
+/* Navigationsbereich */
+nav {
+  background-color: var(--color-accent);
+  width: 100%;
+}
+
+/* Hauptnavigation */
+nav ul {
+  list-style-type: none;
+  margin-left: 20px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Listenelemente der Navigation */
+nav ul li {
+  position: relative; /* Für Dropdowns */
+}
+
+/* Links in der Navigation */
+nav ul li a {
+  display: block;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover-Effekt für Hauptlinks */
+nav ul li a:hover {
+  background-color: var(--color-primary);
+  transition: background-color 0.3s ease;
+}
+
+/* Dropdown-Menüs (standardmäßig versteckt) */
+nav ul li ul {
+  min-width: 200px;
+  width: 200px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-primary);
+  min-width: 160px;
+  z-index: 1;
+
+  /* Für sanftes Einblenden */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  pointer-events: none; /* verhindert Klicks wenn unsichtbar */
+}
+
+/* Dropdown anzeigen bei Hover */
+nav ul li:hover > ul {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Dropdown-Links */
+nav ul li ul li a {
+  padding: 12px 16px;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover-Farbe für Dropdown-Einträge */
+nav ul li ul li a:hover {
+  background-color: var(--color-secondary);
+}
+
+/* Schiebt "Über uns" und filter nach ganz rechts */
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 20px;
+  gap: 10px;
+}
+#filter_handy,
+#filter_handy #filter-menu-handy {
+  display: none;
+}
+
+/* filter icon auf rechter Seite*/
+
+.filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  width: 46px;
+}
+nav .filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+nav .filter:hover {
+  background-color: var(--color-primary);
+}
+
+nav .filter svg {
+  transition: background-color 0.3s ease;
+}
+
+.nav-right ul:hover {
+  background-color: var(--color-primary);
+}
+
+/* Versteckt das Kontrollkästchen */
+.menu-toggle {
+  display: none;
+}
+
+/* Burger-Icon nur auf kleinen Bildschirmen sichtbar */
+.menu-icon {
+  display: none;
+  font-size: 30px;
+  padding: 10px;
+  cursor: pointer;
+  color: white;
+  background-color: var(--color-accent);
+}
+#toggle_button {
+  display: none;
+}
+label[for="toggle_button"] {
+  display: none;
+}
+label[for="toggle_button"] span {
+  font-size: 40px;
+}
+@media (max-width: 720px) {
+  .upper_header {
+    flex-direction: column;
+    align-items: stretch; /* volle Breite der Kinder */
+  }
+
+  .logo {
+    align-self: center;
+  }
+
+  .search-form {
+    width: 100%;
+  }
+
+  .main-header-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    margin-top: 0;
+  }
+}
+/* Sichtbar ab max-width 900px */
+@media (max-width: 620px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+    gap: 20px;
+  }
+  #toggle_button:checked ~ ul {
+    display: flex;
+  }
+  label[for="toggle_button"] {
+    display: block;
+    color: white;
+  }
+}
+@media (max-width: 480px) {
+  .search-form {
+    max-width: 100%;
+  }
+
+  .search-form input[type="search"] {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .search-form button {
+    padding: 10px 12px;
+    min-width: 40px; /* verhindert zu kleinen Button */
+  }
+
+  .search-form button svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (max-width: 720px) {
+    /* Dropdown-Menüs allgemein kleiner */
+    nav ul li ul,
+    .filter-menu {
+      min-width: 140px; /* vorher 160-200px */
+      width: auto;
+      font-size: 13px;
+    }
+
+    /* Dropdown-Links kleiner */
+    nav ul li ul li a,
+    .filter-menu li a {
+      padding: 6px 10px; /* weniger Abstand */
+      font-size: 13px;
+    }
+
+    /* Optional: kleinere Zeilenhöhe für mehr Kompaktheit */
+    nav ul li ul li a,
+    .filter-menu li a {
+      line-height: 1.2;
+    }
+  }
+}
+@media (max-width: 620px) {
+  nav {
+    font-size: 14px;
+  }
+
+  nav ul li ul {
+    left: 0;
+    transform: none;
+    width: 90vw; /* passt sich dem Bildschirm an */
+    max-width: 300px; /* optional, falls es zu breit wird */
+  }
+
+  nav ul li ul li a {
+    text-align: left;
+  }
+}
+@media (max-width: 720px) {
+  /* Dropdown-Menüs allgemein kleiner */
+  nav ul li ul,
+  .filter-menu {
+    min-width: 140px; /* vorher 160-200px */
+    width: auto;
+    font-size: 13px;
+  }
+
+  /* Dropdown-Links kleiner */
+  nav ul li ul li a,
+  .filter-menu li a {
+    padding: 6px 10px; /* weniger Abstand */
+    font-size: 13px;
+  }
+
+  /* Optional: kleinere Zeilenhöhe für mehr Kompaktheit */
+  nav ul li ul li a,
+  .filter-menu li a {
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 620px) {
+  nav {
+    font-size: 14px;
+  }
+
+  nav ul li ul {
+    left: 0;
+    transform: none;
+    width: 90vw; /* passt sich dem Bildschirm an */
+    max-width: 300px; /* optional, falls es zu breit wird */
+  }
+
+  nav ul li ul li a {
+    text-align: left;
+  }
+}
+
+/* alle Anpassungen, damit der 2 Filter bei Handys auftaucht und der andere verschwindet.  */
+
+@media (max-height: 800px) and (max-width: 500px) {
+  #filter_handy {
+    display: flex; /* oder inline-flex */
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+  }
+
+  #filter-menu-handy {
+    display: none;
+    position: absolute;
+    top: 100%; /* Direkt unter dem Parent */
+    left: 0;
+    background-color: var(--color-primary);
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    z-index: 10;
+    min-width: 150px;
+  }
+
+  /* Dropdown anfangs versteckt */
+  #filter_handy #filter-menu-handy {
+    display: none;
+    position: absolute; /* falls Dropdown ausklappen soll */
+    background-color: var(--color-primary);
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    z-index: 10;
+  }
+
+  #filter1,
+  #filter1 #filter-menu-desktop {
+    display: none;
+  }
+  #filter_handy:hover #filter-menu-handy {
+    display: block;
+  }
+}

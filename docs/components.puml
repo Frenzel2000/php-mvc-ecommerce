@@ -1,0 +1,35 @@
+@startuml architecture
+skinparam componentStyle uml2
+skinparam nodesep 80
+skinparam ranksep 80
+
+component [Client]
+database "Database" as DB 
+package "WebShop" {
+    
+    port "index.php" as Index
+    
+    component "routing.php\n(Resolver)" as Router
+    component "Controllers" as Controllers
+    component "Auth / Session" as Auth
+    component "Assets\n(CSS, JS, IMG)" as Assets
+    component "Views" as Views
+    component "Models" as Models
+
+    Index ..> Router : uses resolveRoute()
+    Index --> Controllers : instanciates
+
+    Controllers ..> Auth : checks roles
+    Controllers ..> Models : retrieves data
+    Controllers ..> Views : renders
+
+    Views ..> Assets : uses
+}
+
+interface "HTTP" as HTTP_IF
+Client ..> HTTP_IF : uses
+HTTP_IF --> Index
+
+Models ..> DB : SQL
+
+@enduml

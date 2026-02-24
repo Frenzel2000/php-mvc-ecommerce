@@ -1,0 +1,154 @@
+/* static/css/admin/admin.css */
+
+.admin-main {
+  padding-bottom: 120px;
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  color: var(--color-text);
+}
+
+/* Headlines */
+.admin-main h1 {
+  margin-bottom: 16px;
+  color: var(--color-secondary);
+  font-size: 28px;
+}
+
+/* Links allgemein */
+.admin-main a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+.admin-main a:hover {
+  text-decoration: underline;
+}
+
+/* Kleine Link-Optik (z.B. Bearbeiten) */
+.admin-link {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Buttons */
+.admin-btn {
+  display: inline-block;
+  background: var(--color-primary);
+  color: #fff !important;
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+.admin-btn:hover {
+  filter: brightness(0.95);
+  text-decoration: none;
+}
+
+.admin-btn--danger {
+  background: var(--color-danger);
+}
+
+/* Tabellen */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.admin-table thead th {
+  background: var(--color-secondary);
+  color: #fff;
+  text-align: left;
+  padding: 12px 14px;
+  font-size: 14px;
+}
+
+.admin-table tbody td {
+  padding: 12px 14px;
+  border-top: 1px solid rgba(17, 24, 39, 0.1);
+  vertical-align: top;
+  font-size: 14px;
+}
+
+.admin-table tbody tr:hover {
+  background: var(--color-bg-light);
+}
+
+/* Form */
+.admin-form {
+  margin-top: 16px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.admin-form > div {
+  margin-bottom: 12px;
+}
+
+.admin-form label {
+  display: inline-block;
+  margin-bottom: 6px;
+  color: var(--color-text-secondary);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.admin-form input,
+.admin-form select,
+.admin-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(17, 24, 39, 0.18);
+  outline: none;
+  font-size: 14px;
+}
+
+.admin-form input:focus,
+.admin-form select:focus,
+.admin-form textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(65, 140, 227, 0.18);
+}
+
+/* Aktionen-Zeile (Button + Abbrechen-Link) */
+.admin-form button {
+  margin-right: 10px;
+}
+
+.admin-form a {
+  font-weight: 700;
+}
+
+.admin-actions-row {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.admin-actions-cell {
+  white-space: nowrap;
+}
+
+.admin-actions-row > a,
+.admin-actions-row > form {
+  display: inline-flex;
+}
+
+.admin-actions-row .admin-btn {
+  white-space: nowrap; /* Text im Button bricht nicht um */
+}

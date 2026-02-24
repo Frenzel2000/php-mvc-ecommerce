@@ -1,0 +1,148 @@
+#wrapper_contact_page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding-top: 200px;
+  padding-bottom: 300px;
+}
+.kontaktformular {
+  padding: 30px;
+  margin-left: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 70%;
+  max-width: 900px;
+  height: auto;
+  padding-bottom: 100px;
+}
+.kontaktformular h2 {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: var(--color-primary);
+}
+.kontaktformular select {
+  width: 40%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.kontaktformular textarea {
+  resize: none; /* verhindert Größenänderung des Kommentarfeldes */
+}
+.kontaktformular input,
+.kontaktformular textarea,
+.kontaktformular button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.kontaktformular input::placeholder,
+.kontaktformular textarea::placeholder {
+  color: var(--color-text-secondary);
+}
+.kontaktformular button {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.kontaktformular button:hover {
+  background-color: var(--color-secondary);
+}
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  gap: 10px;
+}
+.checkbox-container input {
+  width: auto;
+  margin-right: 8px;
+}
+.checkbox-container input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.checkbox-container label {
+  display: flex;
+  align-items: center;
+}
+
+#contact_page_right {
+  padding: 20px;
+  width: 30%;
+  height: auto;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#contact_page_right h2 {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: var(--color-primary);
+}
+
+#contact_page_right p {
+  font-size: 14px;
+  color: var(--color-text-primary);
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+#contact_page_right a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-secondary);
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-primary);
+}
+@media (max-width: 768px) {
+  #wrapper_contact_page {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+    padding-top: 300px;
+  }
+
+  .kontaktformular,
+  #contact_page_right {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .kontaktformular {
+    margin-bottom: 30px;
+  }
+}
+@media (max-width: 460px) {
+  .kontaktformular h2,
+  #contact_page_right h2 {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 330px) {
+  .kontaktformular h2 {
+    font-size: 1.5rem;
+  }
+}
